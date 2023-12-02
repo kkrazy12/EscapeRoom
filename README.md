@@ -1,7 +1,6 @@
 # EscapeRoom
 **CyberWonderland** is an *Alice in Wonderland* themed escape room developed for the DAT552 Realtime module.
 
-## Prerequisites
 Before running the server, make sure the following are installed:
 - Node.js (Download from [Node.js website](https://nodejs.org/))
 - Arduino IDE (Download from [Arduino website](https://www.arduino.cc/en/software))
@@ -18,7 +17,7 @@ To setup the project, follow these steps.
    ```
 
 ## Set up Arduino
-In 'App.js', please set the correct serial port for the Arduino, this should the same serial port on the Arduino IDE.
+IMPORTANT: In 'App.js', please set the correct serial port for the Arduino.
 ```javascript
 const port = new SerialPort({
     path: 'COM7', // IMPORTANT: Change to correct serial port
@@ -27,18 +26,11 @@ const port = new SerialPort({
 ```
 Replace `'COM7'` with the port your Arduino is connected to.
 
-```javascript
-const port = new SerialPort({
-    path: 'COM7', // IMPORTANT: Change to correct serial port
-    baudRate: 9600,
-});
-```
-
 ## Send messages to Arduino
 
 To communicate with the Arduino, I have a created a function, accessible from the front-end, called `serialPrint()`. This operates the same as [Serial.print()](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/) from Ardiuno. 
 
-For example, to trigger the phone: 
+For example, to trigger the phone, in main.js: 
 ```javascript
 serialPrint('ring 3');
 ```
