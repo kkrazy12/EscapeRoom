@@ -31,11 +31,16 @@ Replace `'COM7'` with the port your Arduino is connected to.
 
 ## Send messages to Arduino
 
-To communicate with the Arduino, I have a created a function, accessible from the front-end, called `serialPrint()`. This operates the same as [Serial.print()](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/) from Ardiuno. 
+To communicate with the Arduino, use the function in 'Main.js' called `serialPrint()`. (This operates the same as [Serial.print()](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/) from Ardiuno.)
 
-For example, to trigger the phone, in 'Main.js': 
+For example, to trigger the phone: 
 ```javascript
 serialPrint('ring 3');
+```
+
+To trigger the LEDs on the plant:
+```javascript
+serialPrint('turn on LEDs');
 ```
 
 ## Running the server
