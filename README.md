@@ -6,7 +6,8 @@ Before running the server, make sure the following are installed:
 - Arduino IDE (Download from [Arduino website](https://www.arduino.cc/en/software))
 
 ## Installation 
-To setup the project, follow these steps. 
+To setup the project, follow these steps, on the terminal.  
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/kkrazy12/EscapeRoom
@@ -17,12 +18,14 @@ To setup the project, follow these steps.
    ```
 
 ## Set up Arduino
-IMPORTANT: In 'App.js', please set the correct serial port for the Arduino.
+**IMPORTANT:** In 'App.js', please set the correct serial port for the Arduino.
+
 ```javascript
 const port = new SerialPort({
     path: 'COM7', // IMPORTANT: Change to correct serial port
     baudRate: 9600,
 });
+
 ```
 Replace `'COM7'` with the port your Arduino is connected to.
 
@@ -30,13 +33,13 @@ Replace `'COM7'` with the port your Arduino is connected to.
 
 To communicate with the Arduino, I have a created a function, accessible from the front-end, called `serialPrint()`. This operates the same as [Serial.print()](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/) from Ardiuno. 
 
-For example, to trigger the phone, in main.js: 
+For example, to trigger the phone, in 'Main.js': 
 ```javascript
 serialPrint('ring 3');
 ```
 
 ## Running the server
-To run the server, use one of the following commands:
+To run the server, use one of the following commands, on the terminal:
 - For production:
   ```bash
   npm start
