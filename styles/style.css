@@ -1,0 +1,14 @@
+#canvas{
+    height: 400px;
+    width: 400px;
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+#canvas img {
+    width: 118px;
+    height: 118px;
+    border: 1px solid #0c67ae;
+}
