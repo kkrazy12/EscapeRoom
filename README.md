@@ -31,7 +31,7 @@ Replace `'COM7'` with the port your Arduino is connected to.
 
 ## Send messages to Arduino
 
-To communicate with the Arduino, use the function in 'Main.js' called `serialPrint()`. (This operates the same as [Serial.print()](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/) from Ardiuno.)
+To communicate with the Arduino, use the function in 'Arduino.js' called `serialPrint()`. 
 
 For example, to trigger the phone: 
 ```javascript
@@ -53,5 +53,10 @@ To run the server, use one of the following commands, on the terminal:
   ```bash
   npm run dev
   ```
+  - Alternatively
+    ```bash
+  node src/app.js
+  ```  
 
-The server will start on `http://localhost:3000`.
+The server will start on `http://localhost:3000`. 
+To navigate to AI voices, go to 'http://localhost:3000/aiVoices.html'
