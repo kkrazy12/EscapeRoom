@@ -53,7 +53,7 @@ To run the server, use one of the following commands, on the terminal:
   ```bash
   npm run dev
   ```
-  - Alternatively
+- Alternatively
     ```bash
   node src/app.js
   ```  
