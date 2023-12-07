@@ -32,11 +32,14 @@ async function aiVoice(character, textToSpeak) {
     .catch(error => console.error('Error with HTTP request to endpoint:', error));
 }
 
+// Play the AI voice depending on player names 
 document.getElementById('speakButton').addEventListener('click', function() {
-    const player1 = document.getElementById('PlayerName1').value;
-    const player2 = document.getElementById('PlayerName2').value;
-    const player3 = document.getElementById('PlayerName3').value;
+    // Get input of the player names from the text boxes
+    const player1 = document.getElementById('playerName1').value;
+    const player2 = document.getElementById('playerName2').value;
+    const player3 = document.getElementById('playerName3').value;
 
+    // Play Alice's voice with the player's name
     aiVoice("Alice", `Hello, nice to meet you ${player1}, ${player2} and ${player3}... Could you please help me in escaping this awfully peculiar and strange world?`);
 });
 
