@@ -6,7 +6,7 @@ let w, h; //Declares variables to represent the width and height of each puzzle 
 let board = [];
 
 function preload() {
-  source = loadImage("./img/alice.jpeg"); //preloading the image before the canvas so that the user never has only a blank canvas with no image. If it takes it's time to load they will end up loading in together rather than one at a time
+  source = loadImage("./img/alice5.png"); //preloading the image before the canvas so that the user never has only a blank canvas with no image. If it takes it's time to load they will end up loading in together rather than one at a time
 }
 
 function setup() {

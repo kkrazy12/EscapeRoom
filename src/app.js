@@ -1,11 +1,25 @@
+// Configure environment variables
+require('dotenv').config();
+
 // Import modules
 const express = require('express');
-const { SerialPort } = require('serialport');
+const { SerialPort } = require('serialport'); 
 const { ReadlineParser } = require('@serialport/parser-readline');
 const WebSocket = require('ws');
+const ElevenLabs = require('elevenlabs-node');
+const fs = require('fs');
+const path = require('path');
 
 // Initialize Express app
+console.log("Current working directory:", process.cwd());
 const app = express();
+app.use(express.json()); // For parsing JSON in POST requests
+
+// Setup ElevenLabs text-to-speech
+const voice = new ElevenLabs({
+    apiKey: process.env.ELEVENLABS_API_KEY,
+    voiceId: "MXTsuomR2xwiCMNQfqbI",
+})
 
 // Create a HTTP server using the Express app
 const server = require('http').createServer(app);
@@ -42,6 +56,38 @@ function serialPrint(message) {
     });
 }
 
+const filePath = path.join(__dirname, '../public/audio/generatedAudio.mp3');
+
+// Function for text-to-speech generation 
+app.post('/speak', function(req, res) {
+    const textInput = req.body.textInput;
+    const voiceId = req.body.voiceId; 
+
+    voice.textToSpeech({
+        voiceId: voiceId,
+        textInput: textInput,
+        fileName: filePath,
+        stability: 0.5,
+        similarityBoost: 0.8, 
+        style: 1,
+        "use_speaker_boost": true,
+    }).then(() => {
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error reading audio file');
+                return;
+            }
+            res.setHeader('Content-Type', 'audio/mpeg');
+            res.send(data);
+        });
+    }).catch(error => {
+        console.error(error);
+        res.status(500).send('Error generating speech');
+    });
+});
+
+
 // Serve files from the public directory
 app.use(express.static('public'));
 
@@ -68,3 +114,4 @@ const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
