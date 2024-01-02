@@ -1,115 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- Document metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberWonderland</title>
-    <link rel="stylesheet" href="css/main.css" id="mainStyles">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto+Mono:wght@100;400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=VT323&display=swap" rel="stylesheet">
+    <title>Cyber Wonderland</title>
+
+    <!-- Font Awesome stylesheet for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://kit.fontawesome.com/ea878f8687.js" crossorigin="anonymous"></script>
+
+    <!-- External CSS for styling -->
+    <link rel="stylesheet" href="css/mainMenu.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
+
 <body>
-    <main>
-        <title>cyberWonderland</title>
-        <p id="subtitle">Hover over each card to proceed. If you dare...</p>
+    <!-- Body section of the HTML document -->
+    <main aria-label="Cyber Wonderland Game">
+        <!-- Main container -->
+        <div class="contentContainer">
+            <!-- Main header -->
+            <header>
+                <h1>Cyber Wonderland</h1>
+                <p class="subtitle">Escape Room Experience</p>
+                <img src="img/divider.png" class="divider" alt="Decorative Divider">
+            </header>
 
-        <div class="cardsGrouped">
-            <div class="card" id="instructionsCard">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="img/alice1.jpeg" alt="Alice in Wonderland 1">
-                    </div>
-                    <div class="card-back">
-                        <h1>Trigger Warnings</h1>
-                        <div class="details">
-                            <p>Flashing lights</p>
-                            <p>Loud music & sudden sounds</p>
-                            <p>Anxiety inducing pressure</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
-                            <p>Lorem, ipsum dolor sit amet consecteturt</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" id="warningsCard">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="img/alice2.jpg" alt="Alice in Wonderland 2">
-                    </div>
-                    <div class="card-back">
-                        <h1>Instructions</h1>
-                        <div class="details">
-                            <p>Watch the introductory video after exploring this page</p>
-                            <p>Every player will need to enter their names</p>
-                            <p>Listen carefully and interact with objects in the room</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" id="rulesCard">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="img/alice4.jpeg" alt="Alice in Wonderland 3">
-                    </div>
-                    <div class="card-back">
-                        <h1>Rules</h1>
-                        <div class="details">
-                            <p>Do not pull on wires or disconnect any electronics</p>
-                            <p>Do not navigate away from this website page</p>
-                            <p>Ensure you and your team read the trigger warnings</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" id="settingsCard">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="img/alice3.jpeg" alt="Alice in Wonderland 4">
-                    </div>
-                    <div class="card-back">
-                        <h1>Options</h1>
-                        <div class="details">
-                            <p>Contrast safe mode option</p>
-                            <p>Accessibility information & features</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt </p>
-                            <p>Find out about us here</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Navigational links -->
+            <nav aria-label="Game Navigation">
+                <a href="instructions.html" id="startGameLink" class="hoverSound">Start Game</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="setting.html">Settings</a>
+            </nav>
         </div>
 
-        <div class="mainBtns">
-            <button id="enterNamesBtn">Enter Player Names</button>
-            <button id="contrastSafeBtn">Contrast Safe Mode</button>
-        </div>
-
-        <!-- Modal for entering player names -->
-        <div id="playerNamesModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Enter Player Names</h2>
-                <label for="player1">Player 1:</label>
-                <input type="text" id="player1" placeholder="Enter name">
-                <label for="player2">Player 2:</label>
-                <input type="text" id="player2" placeholder="Enter name">
-                <button id="startGameBtn">Start Game</button>
-            </div>
-        </div>
-
+        <!-- Music toggle -->
+        <button id="musicToggle" aria-label="Toggle Music">
+            <i class="fas fa-volume-mute" aria-hidden="true"></i>
+        </button>
     </main>
-    <script src="js/main.js"></script>
-</body>
 
+    <!-- Background Music -->
+    <audio id="bgMusic" loop aria-label="Background Music">
+        <source src="audio/alicetheme.mp3" type="audio/mpeg">
+        <!-- Fallback text for unsupported browsers -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Start Game SFX -->
+    <audio id="startGameSound">
+        <source src="audio/startgame.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Button hover sound effect -->
+    <audio id="buttonSound">
+        <source src="audio/button.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- External JavaScript file for main menu functionality -->
+    <script src="js/mainMenu.js"></script>
+</body>
 </html>

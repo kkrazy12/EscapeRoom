@@ -1,3 +1,13 @@
+/* Font import */
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -19,7 +29,7 @@ title {
     display: flex;
     justify-content: center;
     color: white;
-    font-family: 'Major Mono Display', monospace;
+    font-family: 'Chickweed', sans-serif;
     font-size: 50px;
     padding: 30px 0px 15px 0px;
 }
