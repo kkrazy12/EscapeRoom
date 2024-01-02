@@ -1,0 +1,1376 @@
+/* Rotary Phone CSS: Styles for the rotary phone web interface */
+
+/* Styling for the overall layout and background of the rotary phone page */
+body, html {
+   /* Background gradient for the entire page */
+    background-image: linear-gradient(black, darkred);
+    height: 100vh;/* Full view height */
+  }
+/* Core styling for the body element, centering content and defining font properties */
+body {
+  position: relative; /* Relative positioning for child elements */
+  margin: 0 auto; /* Centering the content */
+  font-size: 1.5em; /* Base font size */
+  max-width: 1800px; /* Maximum width for larger screens */
+  width: 100%; /* Full width */
+  min-height: 700px; /* Minimum height */
+  height: 100%; /* Full height */
+}
+/* Specific styles for buttons, including outline removal for Chrome */
+  button {
+    outline: none; /* Remove blue outline in Chrome */
+  }
+  
+/* Styles for the clear button, positioning it within the interface */
+  .clear {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 35px;
+    border: 2px outset #f2f2f2;
+    color: #a6a6a6;
+    font-size: 1.5em;
+    width: 150px;
+    height: 70px;
+  }
+  
+  /* contains numbers that pop up*/
+  .numCon {
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 310px);
+    height: 70px;
+    width: 620px;
+  }
+  /*bars inside numCon */
+  .bBar {
+    position: absolute;
+    top: 80px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgb(205, 201, 201);
+    height: 1px;
+    width: 165px;
+  }
+  
+  .bL2 {
+    top: 50px;
+    left: 173px;
+    width: 24px;
+  }
+  
+  .bL3 {
+    left: 205px;
+  }
+  
+  .bL4 {
+    top: 50px;
+    left: 378px;
+    width: 24px;
+  }
+  
+  .bL5 {
+    left: 410px;
+    width: 220px;
+  }
+  /* outside div container all phone elements */
+  .dialOut {
+    position: absolute;
+    bottom: 30%;
+    left: calc(50% - 250px);
+    height: 500px;
+    width: 500px;
+  }
+  /* makes outside circle, for decoration only */
+  .conBox {
+    position: absolute;
+    top: -50px;
+    left:-50px;
+    border-radius: 50%;
+    border: 50px solid #d9dcde;
+    height: 500px;
+    width: 500px;
+  }
+  /* there are two containers, #con1/.con1 holds the rotating elements, that make the illusion of a rotating phone, the second .con div holds transparent divs that rest on top of everything which contain onclick functions */
+  
+  .con {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .con1 {
+    top: 50px;
+    left: 50px;
+    height: 500px;
+    width: 500px;
+  }
+  
+  /* btnRows are rectangular divs that are rotated to position the numbers, and the rotating container correctly */
+  
+  .btnRow, .btnRow2 {
+    position: absolute;
+    top: 195px;
+    width: 100%;
+    height: 110px;
+  }
+  
+  .btnRow2 {
+    background-color: transparent;
+  }
+  
+  /* inner dial, which 'Click Calls' text */
+  
+  .dialInn {
+    position: absolute;
+    bottom: 95px;
+    left: 95px;
+    border-radius: 50%;
+    border: 5px outset #f2f2f2;
+    height: 300px;
+    width: 300px;
+  }
+  
+  h1 {
+    margin: 30% 0 0 10%;
+    text-align: center;
+    font-family: Lobster;
+    color: #f2f2f2;
+    width: 80%;
+    height: 60%;
+  }
+  
+  /* .box classes used to make illusion of rotating phone, and to position clickable elements which are transparent */
+  
+  .box {
+    position: absolute;
+    left: -5px;
+    top: -12px;
+    border-top: 32px solid #d9dcde;
+    border-bottom: 32px solid #d9dcde;
+    border-right: 30px solid #d9dcde;
+    border-left: 5px solid #d9dcde;
+    height: 70px;
+    width: 70px;
+    overflow: hidden;
+  }
+  
+  .box1 {
+    top: 48px;
+    left: 382px;
+  }
+  
+  .box2 {
+    top: -18px;
+    left: 293px;
+  }
+  
+  .box3 {
+    top: -29px;
+    left: 181px;
+  }
+  
+  .box4 {
+    top: 15px;
+    left: 80px;
+  }
+  
+  .box5 {
+    top: 105px;
+    left: 15px;
+  }
+  
+  .box6 {
+    top: 215px;
+    left: 3px;
+  }
+  
+  .box7 {
+    top: 318px;
+    left: 48px;
+  }
+  
+  .box8 {
+    top: 385px;
+    left: 140px;
+  }
+  
+  .box9 {
+    top: 394px;
+    left: 252px;
+  }
+  
+  .box0 {
+    top: 348px;
+    left: 352px;
+  }
+  
+  .box10 {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+  /* cirInn, background is transparent, box-shadow property used to make transparent circle so the the number buttons behind will show through */
+  
+  .cirIn {
+    border-radius: 50%;
+    box-shadow: 37px 37px #d9dcde, -37px -37px #d9dcde, -37px 37px #d9dcde, 37px -37px #d9dcde;
+    height: 70px;
+    width: 70px;
+  }
+  
+  .cirIn2 {
+    position: absolute;
+    top: 250px;
+    left: 385px;
+    box-shadow: -3px -17px #737b80 inset;
+    height: 90px;
+    width: 90px;
+  }
+  
+  /* only two circles that are solid */
+  
+  .cirIn3 {
+    background-color: #d9dcde;
+  }
+  
+  /* makes the number buttons on the phone */
+  
+  .btnNum {
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    border: 2px outset #f2f2f2;
+    color: #ffffff;
+    font-size: 1.5em;
+    height: 70px;
+    width: 70px;
+  }
+  
+  .btnNum {
+    top: 20px;
+  
+  }
+  
+  .btnNum2 {
+    /* margin:0;-to keep webkit-margin-before and webkit-margin-after from changing button position in webkit browsers */
+    margin: 0;
+    top: 20px;
+    font-size: 1.0em;
+    border-color: rgb(255, 250, 250);
+    color: rgb(255, 232, 229);
+    box-shadow: 0px 0px 10px rgb(201, 71, 50);
+    height: 50px;
+    width: 50px;
+  }
+  
+  /* for placement of white numbers at top, absolute positioning had to be used to keep these buttons on the same place in every browser */
+  
+  .bt1 {
+    left: 55px;
+  }
+  
+  .bt2 {
+    left: 110px;
+  }
+  
+  .bt3 {
+    left: 205px;
+  }
+  
+  .bt4 {
+    left: 260px;
+  }
+  .bt5 {
+    left: 315px;
+  }
+  
+  .bt6 {
+    left: 410px;
+  }
+  
+  .bt7 {
+    left: 465px;
+  }
+  
+  .bt8 {
+    left: 520px;
+  }
+  
+  .bt9 {
+    left: 575px;
+  }
+  
+  /* background used for dial and click btn */
+  
+  .back1 {
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(-45deg, rgba(38,38,38,1) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(38,38,38,1) 0%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(135deg, rgba(38,38,38,1) 0%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#262626', endColorstr='#000000',GradientType=1 );
+  }
+  
+  /* used to display and hide .btnNum2 divs */
+  
+  .disNon {
+    display: none;
+  }
+  /* all the unmoving rotate classes, done the browser friendly way */
+  .rot10 {
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  .rot20 {
+    -webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+  }
+  .rot40 {
+    -webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+  }
+  .rot50 {
+    -webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);
+  }
+  .rot70 {
+    -webkit-transform: rotate(70deg);
+    -moz-transform: rotate(70deg);
+    -ms-transform: rotate(70deg);
+    -o-transform: rotate(70deg);
+    transform: rotate(70deg);
+  }
+  .rot80 {
+    -webkit-transform: rotate(80deg);
+    -moz-transform: rotate(80deg);
+    -ms-transform: rotate(80deg);
+    -o-transform: rotate(80deg);
+    transform: rotate(80deg);
+  }
+  .rot100 {
+    -webkit-transform: rotate(100deg);
+    -moz-transform: rotate(100deg);
+    -ms-transform: rotate(100deg);
+    -o-transform: rotate(100deg);
+    transform: rotate(100deg);
+  }
+  .rot110 {
+    -webkit-transform: rotate(110deg);
+    -moz-transform: rotate(110deg);
+    -ms-transform: rotate(110deg);
+    -o-transform: rotate(110deg);
+    transform: rotate(110deg);
+  }
+  .rot130 {
+    -webkit-transform: rotate(130deg);
+    -moz-transform: rotate(130deg);
+    -ms-transform: rotate(130deg);
+    -o-transform: rotate(130deg);
+    transform: rotate(130deg);
+  }
+  .rot140 {
+    -webkit-transform: rotate(140deg);
+    -moz-transform: rotate(140deg);
+    -ms-transform: rotate(140deg);
+    -o-transform: rotate(140deg);
+    transform: rotate(140deg);
+  }
+  .rot170 {
+    -webkit-transform: rotate(170deg);
+    -moz-transform: rotate(170deg);
+    -ms-transform: rotate(170deg);
+    -o-transform: rotate(170deg);
+    transform: rotate(170deg);
+  }
+  .rot200 {
+    -webkit-transform: rotate(200deg);
+    -moz-transform: rotate(200deg);
+    -ms-transform: rotate(200deg);
+    -o-transform: rotate(200deg);
+    transform: rotate(200deg);
+  }
+  .rot220 {
+    -webkit-transform: rotate(220deg);
+    -moz-transform: rotate(220deg);
+    -ms-transform: rotate(220deg);
+    -o-transform: rotate(220deg);
+    transform: rotate(220deg);
+  }
+  .rot230 {
+    -webkit-transform: rotate(230deg);
+    -moz-transform: rotate(230deg);
+    -ms-transform: rotate(230deg);
+    -o-transform: rotate(230deg);
+    transform: rotate(230deg);
+  }
+  .rot250 {
+    -webkit-transform: rotate(250deg);
+    -moz-transform: rotate(250deg);
+    -ms-transform: rotate(250deg);
+    -o-transform: rotate(250deg);
+    transform: rotate(250deg);
+  }
+  .rot260 {
+    -webkit-transform: rotate(260deg);
+    -moz-transform: rotate(260deg);
+    -ms-transform: rotate(260deg);
+    -o-transform: rotate(260deg);
+    transform: rotate(260deg);
+  }
+  .rot280 {
+    -webkit-transform: rotate(280deg);
+    -moz-transform: rotate(280deg);
+    -ms-transform: rotate(280deg);
+    -o-transform: rotate(280deg);
+    transform: rotate(280deg);
+  }
+  .rot290 {
+    -webkit-transform: rotate(290deg);
+    -moz-transform: rotate(290deg);
+    -ms-transform: rotate(290deg);
+    -o-transform: rotate(290deg);
+    transform: rotate(290deg);
+  }
+  .rot310 {
+    -webkit-transform: rotate(310deg);
+    -moz-transform: rotate(310deg);
+    -ms-transform: rotate(310deg);
+    -o-transform: rotate(310deg);
+    transform: rotate(310deg);
+  }
+  .rot320 {
+    -webkit-transform: rotate(320deg);
+    -moz-transform: rotate(320deg);
+    -ms-transform: rotate(320deg);
+    -o-transform: rotate(320deg);
+    transform: rotate(320deg);
+  }
+  .rot340 {
+    -webkit-transform: rotate(340deg);
+    -moz-transform: rotate(340deg);
+    -ms-transform: rotate(340deg);
+    -o-transform: rotate(340deg);
+    transform: rotate(340deg);
+  }
+  
+  .rot350 {
+    -webkit-transform: rotate(350deg);
+    -moz-transform: rotate(350deg);
+    -ms-transform: rotate(350deg);
+    -o-transform: rotate(350deg);
+    transform: rotate(350deg);
+  }
+  /* all the rotation animation classes, done the browser friendly way */
+  .r30 {
+    -webkit-animation: r30  .7s linear;
+    -moz-animation:    r30  .7s linear;
+    -o-animation:      r30  .7s linear;
+    animation:         r30  .7s linear;
+  }
+  
+  @-webkit-keyframes r30 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r30  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r30  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r30 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r60 {
+    -webkit-animation: r60  .9s linear;
+    -moz-animation:    r60  .9s linear;
+    -o-animation:      r60  .9s linear;
+    animation:         r60  .9s linear;
+  }
+  
+  @-webkit-keyframes r60 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(80deg);
+    -moz-transform: rotate(80deg);
+    -ms-transform: rotate(80deg);
+    -o-transform: rotate(80deg);
+    transform: rotate(80deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r60  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(80deg);
+    -moz-transform: rotate(80deg);
+    -ms-transform: rotate(80deg);
+    -o-transform: rotate(80deg);
+    transform: rotate(80deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r60  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(80deg);
+    -moz-transform: rotate(80deg);
+    -ms-transform: rotate(80deg);
+    -o-transform: rotate(80deg);
+    transform: rotate(80deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r60 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(80deg);
+    -moz-transform: rotate(80deg);
+    -ms-transform: rotate(80deg);
+    -o-transform: rotate(80deg);
+    transform: rotate(80deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r90 {
+    -webkit-animation: r90  1.1s linear;
+    -moz-animation:    r90  1.1s linear;
+    -o-animation:      r90  1.1s linear;
+    animation:         r90  1.1s linear;
+  }
+  
+  @-webkit-keyframes r90 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(110deg);
+    -moz-transform: rotate(110deg);
+    -ms-transform: rotate(110deg);
+    -o-transform: rotate(110deg);
+    transform: rotate(110deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r90  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(110deg);
+    -moz-transform: rotate(110deg);
+    -ms-transform: rotate(110deg);
+    -o-transform: rotate(110deg);
+    transform: rotate(110deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r90  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(110deg);
+    -moz-transform: rotate(110deg);
+    -ms-transform: rotate(110deg);
+    -o-transform: rotate(110deg);
+    transform: rotate(110deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r90 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(110deg);
+    -moz-transform: rotate(110deg);
+    -ms-transform: rotate(110deg);
+    -o-transform: rotate(110deg);
+    transform: rotate(110deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r120 {
+    -webkit-animation: r120  1.3s linear;
+    -moz-animation:    r120  1.3s linear;
+    -o-animation:      r120  1.3s linear;
+    animation:         r120  1.3s linear;
+  }
+  
+  @-webkit-keyframes r120 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(140deg);
+    -moz-transform: rotate(140deg);
+    -ms-transform: rotate(140deg);
+    -o-transform: rotate(140deg);
+    transform: rotate(140deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r120  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(140deg);
+    -moz-transform: rotate(140deg);
+    -ms-transform: rotate(140deg);
+    -o-transform: rotate(140deg);
+    transform: rotate(140deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r120  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(140deg);
+    -moz-transform: rotate(140deg);
+    -ms-transform: rotate(140deg);
+    -o-transform: rotate(140deg);
+    transform: rotate(140deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r120 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(140deg);
+    -moz-transform: rotate(140deg);
+    -ms-transform: rotate(140deg);
+    -o-transform: rotate(140deg);
+    transform: rotate(140deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r150 {
+    -webkit-animation: r150  1.5s linear;
+    -moz-animation:    r150  1.5s linear;
+    -o-animation:      r150  1.5s linear;
+    animation:         r150  1.5s linear;
+  }
+  
+  @-webkit-keyframes r150 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(170deg);
+    -moz-transform: rotate(170deg);
+    -ms-transform: rotate(170deg);
+    -o-transform: rotate(170deg);
+    transform: rotate(170deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r150  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(170deg);
+    -moz-transform: rotate(170deg);
+    -ms-transform: rotate(170deg);
+    -o-transform: rotate(170deg);
+    transform: rotate(170deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r150  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(170deg);
+    -moz-transform: rotate(170deg);
+    -ms-transform: rotate(170deg);
+    -o-transform: rotate(170deg);
+    transform: rotate(170deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r150 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(170deg);
+    -moz-transform: rotate(170deg);
+    -ms-transform: rotate(170deg);
+    -o-transform: rotate(170deg);
+    transform: rotate(170deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r180 {
+    -webkit-animation: r180  1.7s linear;
+    -moz-animation:    r180  1.7s linear;
+    -o-animation:      r180  1.7s linear;
+    animation:         r180  1.7s linear;
+  }
+  
+  @-webkit-keyframes r180 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(200deg);
+    -moz-transform: rotate(200deg);
+    -ms-transform: rotate(200deg);
+    -o-transform: rotate(200deg);
+    transform: rotate(200deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r180  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(200deg);
+    -moz-transform: rotate(200deg);
+    -ms-transform: rotate(200deg);
+    -o-transform: rotate(200deg);
+    transform: rotate(200deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r180  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(200deg);
+    -moz-transform: rotate(200deg);
+    -ms-transform: rotate(200deg);
+    -o-transform: rotate(200deg);
+    transform: rotate(200deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r180 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(200deg);
+    -moz-transform: rotate(200deg);
+    -ms-transform: rotate(200deg);
+    -o-transform: rotate(200deg);
+    transform: rotate(200deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r210 {
+    -webkit-animation: r210  1.9s linear;
+    -moz-animation:    r210  1.9s linear;
+    -o-animation:      r210  1.9s linear;
+    animation:         r210  1.9s linear;
+  }
+  
+  @-webkit-keyframes r210 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(230deg);
+    -moz-transform: rotate(230deg);
+    -ms-transform: rotate(230deg);
+    -o-transform: rotate(230deg);
+    transform: rotate(230deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r210  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(230deg);
+    -moz-transform: rotate(230deg);
+    -ms-transform: rotate(230deg);
+    -o-transform: rotate(230deg);
+    transform: rotate(230deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r210  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(230deg);
+    -moz-transform: rotate(230deg);
+    -ms-transform: rotate(230deg);
+    -o-transform: rotate(230deg);
+    transform: rotate(230deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r210 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(230deg);
+    -moz-transform: rotate(230deg);
+    -ms-transform: rotate(230deg);
+    -o-transform: rotate(230deg);
+    transform: rotate(230deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r240 {
+    -webkit-animation: r240  2.1s linear;
+    -moz-animation:    r240  2.1s linear;
+    -o-animation:      r240  2.1s linear;
+    animation:         r240  2.1s linear;
+  }
+  
+  @-webkit-keyframes r240 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(265deg);
+    -moz-transform: rotate(265deg);
+    -ms-transform: rotate(265deg);
+    -o-transform: rotate(265deg);
+    transform: rotate(265deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r240  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(265deg);
+    -moz-transform: rotate(265deg);
+    -ms-transform: rotate(265deg);
+    -o-transform: rotate(265deg);
+    transform: rotate(265deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r240  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(265deg);
+    -moz-transform: rotate(265deg);
+    -ms-transform: rotate(265deg);
+    -o-transform: rotate(265deg);
+    transform: rotate(265deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r240 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(265deg);
+    -moz-transform: rotate(265deg);
+    -ms-transform: rotate(265deg);
+    -o-transform: rotate(265deg);
+    transform: rotate(265deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r270 {
+    -webkit-animation: r270  2.3s linear;
+    -moz-animation:    r270  2.3s linear;
+    -o-animation:      r270  2.3s linear;
+    animation:         r270  2.3s linear;
+  }
+  
+  @-webkit-keyframes r270 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(295deg);
+    -moz-transform: rotate(295deg);
+    -ms-transform: rotate(295deg);
+    -o-transform: rotate(295deg);
+    transform: rotate(295deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r270  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(295deg);
+    -moz-transform: rotate(295deg);
+    -ms-transform: rotate(295deg);
+    -o-transform: rotate(295deg);
+    transform: rotate(295deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r270  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(295deg);
+    -moz-transform: rotate(295deg);
+    -ms-transform: rotate(295deg);
+    -o-transform: rotate(295deg);
+    transform: rotate(295deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r270 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(295deg);
+    -moz-transform: rotate(295deg);
+    -ms-transform: rotate(295deg);
+    -o-transform: rotate(295deg);
+    transform: rotate(295deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  .r300 {
+    -webkit-animation: r300  2.5s linear;
+    -moz-animation:    r300  2.5s linear;
+    -o-animation:      r300  2.5s linear;
+    animation:         r300  2.5s linear;
+  }
+  
+  @-webkit-keyframes r300 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(325deg);
+    -moz-transform: rotate(325deg);
+    -ms-transform: rotate(325deg);
+    -o-transform: rotate(325deg);
+    transform: rotate(325deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-moz-keyframes r300  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(325deg);
+    -moz-transform: rotate(325deg);
+    -ms-transform: rotate(325deg);
+    -o-transform: rotate(325deg);
+    transform: rotate(325deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @-o-keyframes r300  {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(325deg);
+    -moz-transform: rotate(325deg);
+    -ms-transform: rotate(325deg);
+    -o-transform: rotate(325deg);
+    transform: rotate(325deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  @keyframes r300 {
+    0% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+    50% {-webkit-transform: rotate(325deg);
+    -moz-transform: rotate(325deg);
+    -ms-transform: rotate(325deg);
+    -o-transform: rotate(325deg);
+    transform: rotate(325deg);}
+    100% {-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);}
+  }
+  
+  /* animation for rotating the little bar each time a number is clicked */
+  
+  .rotBar {
+    -webkit-animation: rB  .5s ;
+    -moz-animation:    rB  .5s ;
+    -o-animation:      rB  .5s ;
+    animation:         rB  .5s ;
+  }
+  
+  @-webkit-keyframes rB {
+    0% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+    50% {-webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    top: 255px;}
+    100% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+  }
+  @-moz-keyframes rB  {
+    0% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+    50% {-webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    top: 255px;}
+    100% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+  }
+  @-o-keyframes rB  {
+    0% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+    50% {-webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    top: 255px;}
+    100% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+  }
+  @keyframes rB {
+    0% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+    50% {-webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    top: 255px;}
+    100% {-webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+    top: 250px;}
+  }
+  
+  /* fades next number button in an out */
+  
+  .rAFade {
+    -webkit-animation:  raFade 3s linear infinite;
+    -moz-animation:     raFade 3s linear infinite;
+    -o-animation:       raFade 3s linear infinite;
+    animation:          raFade 3s linear infinite;
+  }
+  
+  @-webkit-keyframes raFade {
+    0%   {  opacity: 1}
+    50%  {  opacity: .2}
+    100% {  opacity: 1}
+  }
+  @-moz-keyframes raFade {
+    0%   {  opacity: 1}
+    50%  {  opacity: .2}
+    100% {  opacity: 1}
+  }
+  @-o-keyframes raFade {
+    0%   {  opacity: 1}
+    50%  {  opacity: .2}
+    100% {  opacity: 1}
+  }
+  @keyframes raFade {
+    0%   {  opacity: 1}
+    50%  {  opacity: .2}
+    100% {  opacity: 1}
+  }
+  
+  /* media queries to move clear button to right position depending on screen size */
+  
+  @media screen and (max-width: 920px) {
+    .clear {
+      top: 100px;
+    }
+  }
+  
+  @media screen and (min-width: 1120px) {
+    .clear {
+      left: calc(50% - 500px);
+    }
+  }
+  
+.rotary-dial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberWonderland</title>
+        <!-- Link to the JavaScript file -->
+    <script src="./js/rotaryPhone.js"></script>
+      <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="css/rotaryPhone.css" id="rotaryPhoneStyles">
+    
+    <!-- Preconnecting to Google Fonts for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+      <!-- Google Fonts links -->
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto+Mono:wght@100;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=VT323&display=swap" rel="stylesheet">
+</head>
+ <!-- The body will contain the rotary phone UI and any additional content -->
+    <!-- Specific UI elements will be detailed in the accompanying JavaScript and CSS files -->
+<body>
+    <!-- Page content -->
+    <div class="outerDiv">
+    <button class="clear back1" onclick="vObj.clearFun()">Clear</button>
+    <div class="numCon"><a id="phoneLink"></a></div>
+    <div class="numCon" onclick="vObj.call()">
+      <button class="btnNum btnNum2 disNon bt0"></button>
+      <button class="btnNum btnNum2 disNon bt1"></button>
+      <button class="btnNum btnNum2 disNon bt2"></button>
+        <button class="btnNum btnNum2 disNon bt3"></button>
+        <button class="btnNum btnNum2 disNon bt4"></button>
+        <button class="btnNum btnNum2 disNon bt5"></button>
+    
+        <button class="btnNum btnNum2 disNon bt6"></button>
+        <button class="btnNum btnNum2 disNon bt7"></button>
+        <button class="btnNum btnNum2 disNon bt8"></button>
+        <button class="btnNum btnNum2 disNon bt9"></button>
+        <div class="bBar bL1 btLine disNon"></div>
+        <div class="bBar bL2 btLine disNon"></div>
+        <div class="bBar bL3 btLine disNon"></div>
+        <div class="bBar bL4 btLine disNon"></div>
+        <div class="bBar bL5 btLine disNon"></div>
+    </div>
+    <div class="dialOut">
+      <div class="conBox"></div>
+      <div class="btnRow rot230"><button class="btnNum rot130">0</button></div>
+      <div class="btnRow rot260"><button class="btnNum rot100">9</button></div>
+      <div class="btnRow rot290"><button class="btnNum rot70">8</button></div>
+      <div class="btnRow rot320"><button class="btnNum rot40">7</button></div>
+      <div class="btnRow rot350"><button class="btnNum rot10">6</button></div>
+      <div class="btnRow rot20"><button class="btnNum rot340">5</button></div>
+      <div class="btnRow rot50"><button class="btnNum rot310">4</button></div>
+      <div class="btnRow rot80"><button class="btnNum rot280">3</button></div>
+      <div class="btnRow rot110"><button class="btnNum rot250">2</button></div>
+      <div class="btnRow rot140"><button class="btnNum rot220">1</button></div>
+    
+    <div class="con" id="con1">
+      <div class="btnRow2 rot230">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot260">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot290">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot320">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot350">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot20">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot50">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot80">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot110">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot140">
+        <div class="box"><div class="cirIn"></div></div>
+      </div>
+      <div class="btnRow2 rot170">
+        <div class="box"><div class="cirIn cirIn3"></div></div>
+      </div>
+      <div class="btnRow2 rot200">
+        <div class="box"><div class="cirIn cirIn3"></div></div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="con" id="con2">
+        <div class="box box0 box10 rot230" onclick="vObj.numClick(0, 300)"></div>
+        <div class="box box9 box10 rot260" onclick="vObj.numClick(9, 270)"></div>
+        <div class="box box8 box10 rot290" onclick="vObj.numClick(8, 240)"></div>
+        <div class="box box7 box10 rot320" onclick="vObj.numClick(7, 210)"></div>
+        <div class="box box6 box10 rot350" onclick="vObj.numClick(6, 180)"></div>
+        <div class="box box5 box10 rot20"  onclick="vObj.numClick(5, 150)"></div>
+        <div class="box box4 box10 rot50" onclick="vObj.numClick(4, 120)"></div>
+        <div class="box box3 box10 rot80"  onclick="vObj.numClick(3, 90)"></div>
+        <div class="box box2 box10 rot110" onclick="vObj.numClick(2, 60)"></div>
+        <div class="box box1 box10 rot140" onclick="vObj.numClick(1, 30)"></div>
+    </div>
+    
+    
+      <div class="cirIn cirIn2 rot20" id="bar"></div>
+      <div class="dialInn back1" onclick="vObj.call()"><h1 id="title">Click<br>Calls</h1></div>
+    </div>
+    </div>
+    <!-- ... -->
+    </body>
