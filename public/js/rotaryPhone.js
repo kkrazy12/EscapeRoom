@@ -1,4 +1,4 @@
-/* This script simulates a rotary phone interface. It holds all functionalities
+/* This script simulates a rotary phone interface. It encapsulates all functionalities
    within an object (vObj) and an initialisation function (init) to avoid global variables.
    The script handles user interactions, animations, and simulates phone call actions. */
 
@@ -13,23 +13,39 @@
     nums: undefined,     // Collection of number elements
     title: undefined,    // Reference to the title element for display
 
-    // mp3Sequences: {
-    //     '12345': 'path/to/sequence1.mp3', // Replace with actual path
-    //     '67890': 'path/to/sequence2.mp3'  // Replace with actual path
-    //     // Add more sequences as needed
-    // },
+    //test audio files
+    mp3Sequences: {
+        '1234567890': '/directoryAudio/0001.mp3', 
+        '2222222222': '/directoryAudio/0002.wav',  
+        '3333333333': '/directoryAudio/0003.wav',  
+        '4444444444': '/directoryAudio/0004.wav',  
+        '5555555555': '/directoryAudio/0005.wav',  
+        '6666666666': '/directoryAudio/0006.wav',  
+        '7777777777': '/directoryAudio/0007.wav',  
+        '8888888888': '/directoryAudio/0008.mp3', 
+        '9999999999': '/directoryAudio/1009.mp3',  
+        '1111111111': '/directoryAudio/0010.mp3'  
+
+        // Add more sequences as needed
+    },
   
     // Method to handle call actions
 
     /* call method, only makes a call if there are enough digits to */
     call: function() {
         // ... method implementation ...
-      if (this.numCount==10) {
-        console.log(this.numArr.join(''));
-        var tel = 'tel:' + this.numArr.join('').toString();
-        console.log(tel);
-        this.link.setAttribute('href',tel);
-        this.link.click();
+        if (this.numCount == 10) {
+            var dialedNumber = this.numArr.join('');
+            // Check if the dialed number matches a sequence with an MP3 file
+        if (dialedNumber in this.mp3Sequences) {
+            var audio = new Audio(this.mp3Sequences[dialedNumber]);
+            audio.play();
+        } else {
+            // Existing code to make a call
+            var tel = 'tel:' + dialedNumber;
+            this.link.setAttribute('href', tel);
+            this.link.click();
+        }
       } else {
         /* otherwise h1 element is used for instructions */
         this.title.innerHTML = "";
