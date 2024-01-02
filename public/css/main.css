@@ -9,13 +9,38 @@
 }
 
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    background-color: black;
+    color: #FFF;
+    font-family: 'Alagard', sans-serif;
+    /* Prevent user highlighting */
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
+/* Background image */
 main {
-    background-image: linear-gradient(black, darkred);
-    height: 100vh;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.7;
+    z-index: -1;
 }
 
 .cardsGrouped {
@@ -28,17 +53,17 @@ main {
 title {
     display: flex;
     justify-content: center;
-    color: white;
     font-family: 'Chickweed', sans-serif;
     font-size: 50px;
-    padding: 30px 0px 15px 0px;
+    padding: 30px 0px 0px 0px;
+    color: #00CC99;
 }
 
 #subtitle {
-    color: white;
-    padding: 25px 25px 5px 20px;
+    color: #FFF;
+    padding: 0px 25px 5px 20px; 
     font-size: 20px;
-    font-family: 'Roboto Mono', Courier, monospace;
+    font-family: 'Alagard', Courier, monospace;
 }
 
 .card {
