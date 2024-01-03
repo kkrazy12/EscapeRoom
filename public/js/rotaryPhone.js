@@ -40,19 +40,14 @@
         if (dialedNumber in this.mp3Sequences) {
             var audio = new Audio(this.mp3Sequences[dialedNumber]);
             audio.play();
-        } else {
-            // Existing code to make a call
-            var tel = 'tel:' + dialedNumber;
-            this.link.setAttribute('href', tel);
-            this.link.click();
         }
       } else {
         /* otherwise h1 element is used for instructions */
         this.title.innerHTML = "";
-        this.title.innerHTML = "Please<br>enter 1 #s";
+        this.title.innerHTML = "Please<br>dial 10 digits";
         setTimeout(function(){
           vObj.title.innerHTML = "";
-          vObj.title.innerHTML = "Click<br>Calls";
+          vObj.title.innerHTML = "Press<br>Numbers";
         },3000);
       }
   
@@ -63,7 +58,7 @@
       this.link.setAttribute('href','#');
       this.numCount = 0;
       this.title.innerHTML = "";
-      this.title.innerHTML = "Click<br>Calls";
+      this.title.innerHTML = "Press<br>Numbers";
       for(i=0;i<this.nums.length;i++) {
         this.nums[i];
         this.nums[i].classList.add('disNon');
