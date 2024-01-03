@@ -15,16 +15,16 @@
 
     //test audio files
     mp3Sequences: {
-        '1234567890': '/directoryAudio/0001.mp3', 
-        '2222222222': '/directoryAudio/0002.wav',  
-        '3333333333': '/directoryAudio/0003.wav',  
-        '4444444444': '/directoryAudio/0004.wav',  
-        '5555555555': '/directoryAudio/0005.wav',  
-        '6666666666': '/directoryAudio/0006.wav',  
-        '7777777777': '/directoryAudio/0007.wav',  
-        '8888888888': '/directoryAudio/0008.mp3', 
-        '9999999999': '/directoryAudio/1009.mp3',  
-        '1111111111': '/directoryAudio/0010.mp3'  
+        '1234567890': '../audio/directoryAudio/0001.mp3', 
+        '2222222222': '../audio/directoryAudio/0002.wav',  
+        '3333333333': '../audio/directoryAudio/0003.wav',  
+        '4444444444': '../audio/directoryAudio/0004.wav',  
+        '5555555555': '../audio/directoryAudio/0005.wav',  
+        '6666666666': '../audio/directoryAudio/0006.wav',  
+        '7777777777': '../audio/directoryAudio/0007.wav',  
+        '8888888888': '../audio/directoryAudio/0008.mp3', 
+        '9999999999': '../audio/directoryAudio/1009.mp3',  
+        '1111111111': '../audio/directoryAudio/0010.mp3'  
 
         // Add more sequences as needed
     },
