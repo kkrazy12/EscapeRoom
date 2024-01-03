@@ -1,40 +1,68 @@
-body {
-    margin: 0;
-    padding: 0;
+/* Font import */
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
 }
 
-main {
-    background-image: linear-gradient(black, darkred);
-    height: 100vh;
+body {
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #FFF;
+    font-family: 'Alagard', sans-serif;
+}
+
+/* Background image */
+main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.7;
+    z-index: -1;
 }
 
 .cardsGrouped {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 title {
     display: flex;
     justify-content: center;
-    color: white;
-    font-family: 'Major Mono Display', monospace;
-    font-size: 50px;
-    padding: 30px 0px 15px 0px;
+    font-family: 'Chickweed', sans-serif;
+    font-size: 4em;
+    padding: 30px 0px 0px 0px;
+    margin-top: 20px; 
+    color: #00CC99;
 }
 
 #subtitle {
-    color: white;
-    padding: 25px 25px 5px 20px;
+    color: #FFF;
+    padding: 0px 25px 5px 20px;
     font-size: 20px;
-    font-family: 'Roboto Mono', Courier, monospace;
+    font-family: 'Alagard', Courier, monospace;
 }
 
 .card {
-    width: 300px;
-    height: 400px;
-    margin: 20px;
+    width: 250px;
+    height: 350px;
+    margin: 10px;
     perspective: 1000px;
     border: 4px solid gray;
     border-radius: 3px;
@@ -71,6 +99,8 @@ title {
     flex-direction: column;
     background-color: #ffffff;
     align-items: center;
+    max-height: 350px;
+    overflow: auto;
 }
 
 img {
@@ -94,7 +124,7 @@ h1 {
     margin-top: 15px;
 }
 
-.card-back .details{
+.card-back .details {
     font-family: 'Roboto Mono';
     padding: 5px 20px 0px 20px;
 }
@@ -107,28 +137,24 @@ h1 {
 .mainBtns {
     display: flex;
     justify-content: center;
-    margin-top: 3em;
+    margin-top: 1em; 
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px; 
+    font-size: 20px; 
     margin: 0 10px;
     cursor: pointer;
     text-decoration: none;
     color: white;
-    /* background-color: #93f0e8; 
-    border: 1px solid #22aa9f;  */
     background-color: black;
     border-radius: 3px;
     border: 1px solid grey;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Alagard', Courier, monospace;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    /* background-color: #3ed7c3; 
-    border-color: #28b9a5; */
     background-color: red;
     color: white;
 }
@@ -160,4 +186,48 @@ button:hover {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+/* Responsive adjustments for different screen sizes */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 200px; 
+        height: 300px; 
+    }
+
+    .card-back {
+        max-height: 300px; 
+    }
+
+    title {
+        font-size: 40px;
+    }
+
+    #subtitle {
+        font-size: 18px;
+    }
+}
+
+/* Responsive adjustments for mobile */
+@media screen and (max-width: 480px) {
+    .cardsGrouped {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 150px;
+        height: 225px;
+    }
+
+    .card-back {
+        max-height: 225px; 
+    }
+
+    title {
+        font-size: 30px;
+    }
+
+    #subtitle {
+        font-size: 16px;
+    }
 }
