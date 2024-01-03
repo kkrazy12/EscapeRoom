@@ -1,0 +1,35 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+#cutsceneVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+#startButton, .playerName {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+#startButton {
+    top: 70%; 
+    padding: 10px 20px;
+}
+#playerName1 {
+    top: 40%;
+}
+#playerName2 {
+    top: 50%; 
+}
+#playerName3 {
+    top: 60%; 
+}
