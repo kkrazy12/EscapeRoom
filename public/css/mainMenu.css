@@ -1,0 +1,150 @@
+/* Font import */
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+/* General styling */
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    color: #00CC99;
+    font-family: 'Alagard', sans-serif;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+/* Background image */
+main {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.7;
+    z-index: -1;
+}
+.contentContainer {
+    margin: 15px 100px;
+    padding-top: 50px; 
+}
+
+/* Heading */
+header h1, .subtitle {
+    font-family: 'Chickweed', sans-serif;
+    text-shadow: 4px 4px 8px #000000;
+    letter-spacing: 0.05em;
+    margin-left: 0;
+}
+header h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 2em;
+    color: #00a57cec;
+    font-family: 'Alagard', sans-serif;
+    margin-top: 0;
+    margin-bottom: 0; 
+}
+
+/* Divider */
+.divider {
+    width: 60%;
+    margin-top: 2px;
+    margin-bottom: 40px;
+    opacity: 0.2;
+}
+
+/* Reset margins and padding */
+nav, nav a {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation links container */
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the flex container */
+}
+
+/* Navigation links */
+nav a {
+    display: inline-block;
+    font-size: 2.5em;
+    text-decoration: none;
+    transition: 0.5s;
+    color: #00CC99;
+    margin-bottom: 10px; /* Adjust as needed */
+}
+nav a:hover {
+    color: #00ffbf;
+    text-shadow: -2px 0px 12px #09ed6c;
+}
+
+/* Other existing styles */
+
+
+/* Music toggle */
+button#musicToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 50px;
+    color: #00CC99;
+    cursor: pointer;
+    transition: 0.5s;
+    background: none;
+    border: none;
+}
+button#musicToggle:hover {
+    color: #00ffbf;
+    text-shadow: -2px 0px 12px #09ed6c;
+}
+
+/* Responsive for mobile devices */
+/* Smaller text size for mobile devices */
+@media screen and (max-width: 768px) {
+    .content-container {
+        margin: 0 20px;
+        padding-top: 20px;
+    }
+
+    header h1 {
+        font-size: 3em; 
+    }
+    .subtitle {
+        font-size: 1.5em;
+    }
+    nav a {
+        font-size: 1.5em;
+    }
+    button#musicToggle {
+        font-size: 30px;
+        bottom: 10px;
+        right: 10px;
+    }
+    .divider {
+        width: 100%;
+    }
+}
