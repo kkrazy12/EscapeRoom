@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonSound = document.getElementById('buttonSound');
     const musicToggle = document.getElementById('musicToggle');
     const startGameLink = document.getElementById('startGameLink');
-    const contentContainer = document.querySelector('.contentContainer')
+    const contentContainer = document.querySelector('.contentContainer');
 
     // Function to toggle the music icon
     const toggleMusicIcon = (isPlaying) => {
@@ -52,12 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Select all links within the contentContainer
+    const navLinks = contentContainer.querySelectorAll('nav a');
 
-    // For the mouse hover sound
-    contentContainer.addEventListener('mouseover', () => {
+    // Function to play the button hover sound
+    const playHoverSound = () => {
         // Play the button hover sound if music is enabled
         if (!bgMusic.paused) {
             playAudio(buttonSound);
         }
+    };
+
+    // Attach the mouseover event listener to each link
+    navLinks.forEach(link => {
+        link.addEventListener('mouseover', playHoverSound);
     });
 });
