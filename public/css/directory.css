@@ -1,0 +1,146 @@
+/* Font import */
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: flex-start; /* Aligns to the top, not center */
+    color: #FFF; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers children horizontally */
+    width: 100%; 
+    /* Removed justify-content: center; */
+}
+
+/* Background image */
+main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.cardsGrouped {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Chickweed', sans-serif;
+    font-size: 4em;
+    padding: 30px 0px 0px 0px;
+    margin-top: 20px; 
+    color: #00CC99;
+}
+
+#subtitle {
+    color: #FFF;
+    padding: 0px 25px 5px 20px;
+    font-size: 20px;
+    font-family: 'Alagard', Courier, monospace;
+}
+
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    color: #c19f51;
+}
+
+header {
+    text-align: center;
+}
+
+header h1, .subtitle {
+    font-family: 'Chickweed', sans-serif;
+    text-shadow: 4px 4px 8px #000000;
+    letter-spacing: 0.05em;
+    margin-left: 0;
+}
+
+header h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+    color: #00CC99;
+}
+
+.directory {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.profile img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile h2 {
+    margin: 10px 0;
+    font-family: 'Alagard', Courier, monospace;
+}
+
+.profile p {
+    font-style: italic;
+    font-family: 'Alagard', Courier, monospace;
+}
+/* Responsive for mobile devices */
+/* Smaller text size for mobile devices */
+@media screen and (max-width: 768px) {
+    .content-container {
+        margin: 0 20px;
+        padding-top: 20px;
+    }
+
+    header h1 {
+        font-size: 3em; 
+    }
+    .subtitle {
+        font-size: 1.5em;
+    }
+    .divider {
+        width: 100%;
+    }
+}
