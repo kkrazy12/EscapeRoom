@@ -10,6 +10,15 @@ Change the CSS styling for the player selection input
 
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("DOMContentLoaded event triggered");
+    
+    // Create an overlay div and append it to the body
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
+
+    // Display the overlay when the page loads
+    overlay.style.display = 'block';
+
     // Retrieve the number of players from localStorage
     const playerCount = localStorage.getItem('playerCount');
     console.log("Number of players retrieved:", playerCount);
@@ -17,7 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Find the parent container where the inputs will be added
     const container = document.getElementById('startButton').parentNode;
 
-    // Loop to create input fields for the numbers of players
+    // Loop to create input fields for the number of players
     for (let i = 1; i <= playerCount; i++) {
         console.log("Creating input for player", i);
         // Create the input fields
@@ -25,7 +34,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         input.type = 'text';
         input.id = `playerName${i}`;
         input.className = 'playerName';
-        input.placeholder = `Enter Player ${i} Name`;
+        input.placeholder = `Player ${i}`;
         // Insert the input fields before start button
         container.insertBefore(input, document.getElementById('startButton'));
     }
@@ -43,7 +52,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let queenAudio;
     let aliceAudio;
 
-    // Function to play the video after submission and hides UI elements
+    // Function to play the video after submission and hide UI elements
     const playVideo = () => {
         console.log("Play video function triggered");
         // Object to store player names
@@ -85,13 +94,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 aliceAudio = new Audio('./audio/aliceBackup.mp3');
                 console.log("Falling back to Alice's backup audio");
             });
+        
         // Play video
         video.play();
         console.log("Video started playing");
-        // Hide start button
+        // Hide start button, player inputs, and the heading, and divider
         startButton.style.display = 'none';
-        // Hide player inputs
         playerNameInputs.forEach(input => input.style.display = 'none');
+        document.getElementById('heading').style.display = 'none';
+        document.querySelector('.divider').style.display = 'none';
+        overlay.style.display = 'none';
     };
 
     // Event listener for start button
@@ -101,7 +113,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let queenVoicePlayed = false;
     let aliceVoicePlayed = false;
 
-    // Event listner to play AI voices at specific times in the video
+    // Event listener to play AI voices at specific times in the video
     video.ontimeupdate = () => {
         // Play Queen's audio during video
         if (video.currentTime >= QUEEN_SCENE_TIME && !queenVoicePlayed) {
