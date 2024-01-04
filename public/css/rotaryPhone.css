@@ -3,8 +3,7 @@
 /* Styling for the overall layout and background of the rotary phone page */
 body, html {
    /* Background gradient for the entire page */
-    background-image: linear-gradient(black, darkred);
-    height: 100vh;/* Full view height */
+
   }
  body {
     height: 100%;
@@ -23,7 +22,7 @@ body::before {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    opacity: 0.7;
+    opacity: 0.9;
     z-index: -1;
 }
 /* Core styling for the body element, centering content and defining font properties */
@@ -95,10 +94,11 @@ body {
   /* outside div container all phone elements */
   .dialOut {
     position: absolute;
-    bottom: 30%;
+    top: 50%;
     left: calc(50% - 250px);
     height: 500px;
     width: 500px;
+    z-index: -1;
   }
   /* makes outside circle, for decoration only */
   .conBox {
