@@ -12,17 +12,16 @@ body, html {
     height: 100%;
     margin: 0;
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: flex-start; /* Aligns to the top, not center */
+    justify-content: center;
+    align-items: flex-start;
     color: #FFF; 
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers children horizontally */
+    align-items: center; 
     width: 100%; 
-    /* Removed justify-content: center; */
 }
 
 /* Background image */
@@ -146,6 +145,7 @@ header h1 {
     font-size: 4em;
     margin-bottom: 0;
     color: #00CC99;
+    font-family: 'Chickweed', sans-serif;
 }
 
 .card-back .details {
