@@ -8,13 +8,21 @@
     src: url('../fonts/alagard.ttf') format('truetype');
 }
 
-body {
-    height: 100vh; /* Full viewport height */
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    background-color: black;
-    color: #FFF;
-    font-family: 'Alagard', sans-serif;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: flex-start; /* Aligns to the top, not center */
+    color: #FFF; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers children horizontally */
+    width: 100%; 
+    /* Removed justify-content: center; */
 }
 
 /* Background image */
@@ -30,7 +38,6 @@ main::before {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    opacity: 0.7;
     z-index: -1;
 }
 
@@ -116,12 +123,29 @@ p {
     color: #333;
 }
 
-h1 {
+/*h1 {
     text-align: center;
     font-weight: bold;
     font-size: 22px;
     font-family: 'Fira Mono', monospace;
     margin-top: 15px;
+}*/
+
+header {
+    text-align: center;
+}
+
+header h1, .subtitle {
+    font-family: 'Chickweed', sans-serif;
+    text-shadow: 4px 4px 8px #000000;
+    letter-spacing: 0.05em;
+    margin-left: 0;
+}
+
+header h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+    color: #00CC99;
 }
 
 .card-back .details {
@@ -187,6 +211,43 @@ button:hover {
     font-size: 20px;
     cursor: pointer;
 }
+
+/* Form styling */
+form#playerSelectionForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Style for form elements */
+form#playerSelectionForm > .form-group {
+    margin: 10px 0; 
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for labels and select box */
+form#playerSelectionForm label,
+form#playerSelectionForm select {
+    margin-bottom: 10px;
+    width: auto; 
+    text-align: center;
+}
+
+/* Style for the button */
+form#playerSelectionForm button {
+    margin-top: 20px; 
+}
+
+.label-margin {
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    display: block; 
+}
+
 
 /* Responsive adjustments for different screen sizes */
 @media screen and (max-width: 768px) {
