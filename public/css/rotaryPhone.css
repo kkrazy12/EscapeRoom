@@ -1,10 +1,8 @@
 /* Rotary Phone CSS: Styles for the rotary phone web interface */
 
 /* Styling for the overall layout and background of the rotary phone page */
-body, html {
-   /* Background gradient for the entire page */
 
-  }
+
  body {
     height: 100%;
     position: relative;

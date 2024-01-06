@@ -1,35 +1,145 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
+/* Font import */
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
 }
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+/* Hover styles for each button */
+.yesButton:hover {
+    background-color: rgba(144, 238, 144, 0.237); 
+}
+
+.noButton:hover {
+    background-color: rgba(240, 128, 128, 0.183); 
+}
+
+.replayButton:hover {
+    background-color: rgba(173, 216, 230, 0.242); 
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #cutsceneVideo {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
     position: fixed;
     right: 0;
     bottom: 0;
+    z-index: 1;
 }
+
 #startButton, .playerName {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    font-family: 'Alagard', Courier, monospace;
+    padding: 15px 30px;
     font-size: 20px;
     cursor: pointer;
+    margin: 10px 0; 
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid grey;
+    transition: background-color 0.3s, transform 0.3s;
     z-index: 2;
 }
-#startButton {
-    top: 70%; 
-    padding: 10px 20px;
+
+#startButton:hover, .playerName:hover {
+    background-color: #00ffbb36;
+    color: white;
 }
-#playerName1 {
-    top: 40%;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    z-index: 4; 
 }
-#playerName2 {
-    top: 50%; 
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 0.25em;
+    color: #00CC99;
+    font-family: 'Chickweed', sans-serif;
+    letter-spacing: 0.05em;
 }
-#playerName3 {
-    top: 60%; 
+
+@media (max-width: 600px) {
+    #startButton, .playerName {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+.divider, #new-divider {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.3; 
+}
+
+/* General button styling */
+button {
+    font-family: 'Alagard', Courier, monospace;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid grey;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 2;
+}
+
+button:hover {
+    background-color: #00ffbb36;
+    color: white;
+}
+
+#countdownTimer {
+    font-family: 'Chickweed', sans-serif;
+    color: #00CC99;
+    font-size: 7em; 
+    text-align: center;
+    margin-top: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('./img/background2.png') no-repeat center center fixed;
+    background-size: cover;
+    z-index: 2000; 
+    display: block; 
+}
+
+.fadeIn {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+video.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+video.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }

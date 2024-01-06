@@ -1,6 +1,9 @@
 // Configure environment variables
 require('dotenv').config();
 
+// Import JSON for AI voices
+const voiceList = require('./voices.json');
+
 // Import modules
 const express = require('express');
 const { SerialPort } = require('serialport'); 
@@ -57,6 +60,10 @@ function serialPrint(message) {
 }
 
 const filePath = path.join(__dirname, '../public/audio/generatedAudio.mp3');
+
+app.get('/voiceList', (req, res) => {
+    res.json(voiceList);
+});
 
 // Function for text-to-speech generation 
 app.post('/speak', function(req, res) {
