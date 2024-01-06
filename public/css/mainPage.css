@@ -5,6 +5,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* background-image: linear-gradient(red, black); */
+    background-image: url('../img/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .timer-container {
@@ -16,61 +21,103 @@ body {
     position: relative;
 }
 
+.main-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    height: 40vh;
+}
+
+.main-btns .links .btn-names{
+    font-size: 20px;
+}
+
+.fa-puzzle-piece:before, .fa-address-book-o:before {
+    font-size: 40px;
+    padding-right: 8px;
+}
+
+.fa-pagelines:before, .fa-phone:before {
+font-size: 40px;
+}
+
+.links {
+    flex: 1;
+    margin: 0 10px;
+    background-color: darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+    width: 230px;
+    color: #00ffbf;
+    text-decoration: none;
+    border: white solid 3px;
+    border-radius: 15px;
+
+}
+ .main-btns .links:hover{
+    color: #00ffbf;
+    text-shadow: -2px 0px 12px #09ed6c;
+    background-color: black;
+ }
+
 .backup-puzzles {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     margin: 20px auto;
-    height: 80vh;
+    width: 100%;
 }
 
-.box {
-    flex: 1;
-    margin: 0 10px;
-    background-color: #8ac5e5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 200px; 
-    width: 300px;
+.backup-puzzles button:hover {
+    color: #00ffbf;
+    text-shadow: -2px 0px 12px #09ed6c;
+    background-color: black;
 }
 
-
-.plant {
-    background-image: url('../img/alice1.jpeg');
-    width: 400px;
-    height: 200px;
-    color: white;
+.backup-puzzles button {
+    background-color: darkred;
+    color: #00ffbf;
+    border: white solid 3px;
+    border-radius: 15px;
+    width: 150px;
+    height: 140px;
 }
 
+.backup-puzzles .puzzle-names {
+    font-size: 20px;
+}
 
 /*timer styles here*/
-  
-  .timer {
+
+.timer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     width: 200px;
-  }
-  
-  .timer .progress-container {
+}
+
+.timer .progress-container {
     width: 100%;
     border: 1px solid black;
     --height: 20px;
     height: var(--height);
-  }
-  
-  :root {
-    --safe: lightgreen;
-    --warn: yellow;
-    --danger: red;
-  }
-  
-  .timer .progress {
+}
+
+:root {
+    --safe: rgb(16, 179, 16);
+    --warn: rgb(218, 218, 10);
+    --danger: rgb(202, 14, 14);
+}
+
+.timer .progress {
     --color: var(--safe);
     --progress: 1;
     background-color: var(--color);
@@ -79,4 +126,4 @@ body {
     transform: scaleX(var(--progress));
     transform-origin: left;
     transition: transform 0.1s, color 0.1s;
-  }
+}
