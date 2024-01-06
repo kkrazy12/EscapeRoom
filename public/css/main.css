@@ -335,7 +335,7 @@ form#playerSelectionForm button {
     }
 }
 
-.new-divider {
+.divider {
     max-width: 50%;
     height: auto;
     display: block;
