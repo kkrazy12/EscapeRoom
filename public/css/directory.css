@@ -79,7 +79,10 @@ p {
     text-align: center;
     color: #c19f51;
 }
-
+p:hover {
+    font-size: 22px;
+    color: #ffde25;
+}
 header {
     text-align: center;
 }
@@ -120,6 +123,7 @@ header h1 {
 .profile h2 {
     margin: 10px 0;
     font-family: 'Alagard', Courier, monospace;
+    text-align: center;
 }
 
 .profile p {

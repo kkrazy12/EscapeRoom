@@ -22,8 +22,13 @@
     <!-- Specific UI elements will be detailed in the accompanying JavaScript and CSS files -->
 <body>
     <!-- Page content -->
-    <div class="outerDiv">
-    <button class="clear back1" onclick="vObj.clearFun()">Clear</button>
+    
+    <div class="outerDiv"> 
+      <button class="end-call-button" onclick="vObj.hangUp()" style="display: none;">End Call</button>
+      <button class="clear back1" onclick="vObj.clearFun()">Clear</button>
+     
+
+    
     <div class="numCon"><a id="phoneLink"></a></div>
     <div class="numCon" onclick="vObj.call()">
       <button class="btnNum btnNum2 disNon bt0"></button>
@@ -43,6 +48,7 @@
         <div class="bBar bL4 btLine disNon"></div>
         <div class="bBar bL5 btLine disNon"></div>
     </div>
+    
     <div class="dialOut">
       <div class="conBox"></div>
       <div class="btnRow rot230"><button class="btnNum rot130">0</button></div>
@@ -107,12 +113,12 @@
         <div class="box box2 box10 rot110" onclick="vObj.numClick(2, 60)"></div>
         <div class="box box1 box10 rot140" onclick="vObj.numClick(1, 30)"></div>
     </div>
-    
-    
       <div class="cirIn cirIn2 rot20" id="bar"></div>
-      <div class="dialInn back1" onclick="vObj.call()"><h1 id="title">Click<br>Calls</h1></div>
+      <!-- New End Call button element -->
+      <div class="dialInn back1" onclick="vObj.call()"><h1 id="title">Click<br>Calls</h1> </div>
     </div>
     </div>
+    
     
     <!-- ... -->
     </body>
