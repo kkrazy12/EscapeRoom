@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../public/css/mainPage.css">
+</head>
+
+<body>
+
+    <!--Timer here-->
+    <div class="timer-container">
+        <div class="timer">
+            <div class="display"></div>
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Main button links to separate pages-->
+    <div class="main-btns">
+        <a class="links fa fa-puzzle-piece" href="/public/slidePuzzle.html">
+            <span class="btn-names">Slide Puzzle</span>
+        </a>
+        <a class="links fa fa-address-book-o" href="">
+            <span class="btn-names">Phone Directory</span>
+        </a>
+    </div>
+
+    <!--The backup puzzles that we can hide/show whenever needed-->
+    <div class="backup-puzzles">
+        <button type="button" class="fa fa-pagelines" id="plant" data-bs-toggle="modal" data-bs-target="#modal1"></button>
+        <button type="button" class="fa fa-phone" id="phone" data-bs-toggle="modal" data-bs-target="#modal2"></button>
+    </div>
+    <i></i>
+    <!--Modals start here - for the backup puzzles -->
+    <div class="modals-container">
+        <!--Modal-->
+        <div id="modal1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">SOS!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>here is where the plant content would go - like a graphic and lights on it</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Replay sequence</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal 2-->
+        <div id="modal2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">PHONE!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>here is where the phone content will go</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Replay phone call</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Timer script linked here -->
+    <script src="../public/js/timer.js"></script>
+
+    <!-- Include jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Then include Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -12,11 +12,21 @@
     </video>
 
     <div class="container">
-        <h1 id="heading">Enter your Name</h1>
+        <h1 id="enterNameHeading">Enter your Name</h1>
         <img src="img/divider.png" alt="Divider Image" class="divider">
         <button id="startButton">Begin</button>
+        <span id="countdownTimer"></span>
+    </div>
+
+    <div id="decisionUI" class="container" style="display: none;">
+        <h1 id="decisionHeading">What will you do?</h1>
+        <img src="img/divider.png" alt="Divider Image" id="new-divider">
+        <button id="yesButton">Yes, I will help you find the jewels</button>
+        <button id="noButton">No, I'm not interested, get lost</button>
+        <button id="replayButton">Rewatch Video</button>
     </div>
 
     <script src="./js/aiVoices.js"></script>
+    <script src="./js/video.js"></script>
 </body>
 </html>

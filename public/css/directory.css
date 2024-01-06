@@ -148,3 +148,12 @@ header h1 {
         width: 100%;
     }
 }
+
+.divider {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.3; 
+}
