@@ -175,11 +175,11 @@ button {
     border-radius: 3px;
     border: 1px solid grey;
     font-family: 'Alagard', Courier, monospace;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 1s, transform 1s;
 }
 
 button:hover {
-    background-color: red;
+    background-color: #00ffbb80;
     color: white;
 }
 
@@ -291,4 +291,81 @@ form#playerSelectionForm button {
     #subtitle {
         font-size: 16px;
     }
+}
+
+#playerCountButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.playerButton {
+    padding: 40px 60px;
+    font-size: 48px; /* Significantly increased font size */
+    margin: 15px;
+    flex: 0 0 25%; /* Width of each button */
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    border: 2px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    transition: background-color 0.5s, transform 0.5s;
+}
+
+.playerButton:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .playerButton {
+        padding: 30px 40px;
+        font-size: 40px; /* Adjusted font size for medium screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .playerButton {
+        padding: 20px 30px;
+        font-size: 32px; /* Adjusted font size for small screens */
+        flex: 0 0 100%; /* Full width on very small screens */
+    }
+}
+
+.new-divider {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.3; 
+}
+
+.playerButton.selected {
+    background-color: #00ffbb80; 
+}
+
+.navButton {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    display: inline-block; 
+    text-align: center;
+    transition: 1s;
+    color: #00CC99;
+}
+
+.navButton:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
 }
