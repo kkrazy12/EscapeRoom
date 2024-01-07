@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Metadata -->
     <meta charset="UTF-8">
-    <title>Opening Cutscene</title>
+    <title>Opening Cutscene | Cyber Wonderland</title>
     <link rel="stylesheet" type="text/css" href="./css/cutscene.css">
 </head>
 <body>
+    <!-- Video tag for embedding the cutscene -->
     <video id="cutsceneVideo">
         <source src="videos/cutscene01.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
+    <!-- The main UI and name input -->
     <div class="container">
         <h1 id="enterNameHeading">Enter your Name</h1>
         <img src="img/divider.png" alt="Divider Image" class="divider">
-        <button id="startButton">Begin</button>
+        <button id="startButton">Start Game</button>
         <span id="countdownTimer"></span>
     </div>
 
+    <!-- The second UI -->
     <div id="decisionUI" class="container" style="display: none;">
         <h1 id="decisionHeading">What will you do?</h1>
         <img src="img/divider.png" alt="Divider Image" id="new-divider">
-        <button id="yesButton">Yes, I will help you find the jewels</button>
-        <button id="noButton">No, I'm not interested, get lost</button>
-        <button id="replayButton">Rewatch Video</button>
+        <button class="yesButton" id="yesButton">Yes, I will help you find the jewels</button>
+        <button class="noButton" id="noButton">No, I'm not interested, get lost</button>
+        <button class="replayButton" id="replayButton">Rewatch Video</button>
     </div>
 
+    <!-- External javascript for functionality -->
     <script src="./js/aiVoices.js"></script>
     <script src="./js/video.js"></script>
 </body>

@@ -6,6 +6,7 @@
 
 window.queenVoicePlayed = false;
 window.aliceVoicePlayed = false;
+window.videoFirstPause = false;
 
 const QUEEN_SCENE_TIME = 54;
 
@@ -24,7 +25,6 @@ const videoControl = (function() {
     function loadVideo() {
         const startButton = document.getElementById('startButton');
         startButton.addEventListener('click', () => playVideo());
-        video.onended = onVideoEnd;
         video.ontimeupdate = () => onVideoTime();
     }
 
@@ -89,7 +89,6 @@ const videoControl = (function() {
         }, 4000); // 4-second delay
     }
 
-    // Function to play audio at designated times in the video
     function onVideoTime() {
         console.log("Video currentTime:", video.currentTime);
         if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed) {
@@ -97,36 +96,13 @@ const videoControl = (function() {
             window.queenVoicePlayed = true;
             playQueenVoice();
         }
-    }
 
-    // Display new UI at the end of the video and reset voice flags
-    function onVideoEnd() {
-        // Change the video source to the second video file
-        video.src = 'videos/cutscene02.mp4';
-
-        // Add the fade-in effect
-        video.classList.add('fade-in');
-        video.load();
-
-        // Remove the fade-in effect once the video starts playing
-        video.onplay = () => {
-            video.classList.remove('fade-in');
-        };
-
-        // Load and play the new video
-        video.load();
-        video.play();
-        // Pause the video initially
-        video.pause();
-
-        // Show black overlay
-        uiControl.showBlackOverlay();
-
-        // Show Decision UI
-        uiControl.showDecisionUI();
-
-        // Reset voice flags
-        resetVoiceFlags();
+        if (video.currentTime >= 87 && !video.paused && !window.videoFirstPause) {
+            video.pause();
+            uiControl.showBlackOverlay();
+            uiControl.showDecisionUI();
+            window.videoFirstPause = true; // Set flag to true after pausing
+        }
     }
 
     // Reset voice flags to allow for replaying voices
@@ -222,10 +198,10 @@ const uiControl = (function() {
         });
     }
 
-    // Start a countdown from 0 to 5
+    // Start countdown from 5
     function startCountdown() {
+        // Delay for 3 seconds before starting the countdown
         setTimeout(() => {
-            // Start countdown from 5
             let countdown = 5;
             const countdownTimerElement = document.getElementById('countdownTimer');
             countdownTimerElement.style.display = 'block';
@@ -245,8 +221,10 @@ const uiControl = (function() {
 
                 countdown -= 1; // Decrease countdown
             }, 1000);
-        }, 3000); // Delays for 3 seconds before beginning
+        }, 3000); // 3-second delay before countdown starts
     }
+
+
 
     return {
         createElement: createElement,
@@ -312,46 +290,58 @@ const eventBinding = (function() {
     }
 
     function yesButton() {
-        // Play the 'yes' response audio
-        playAudio('audio/videoAudio/aliceYes20.mp3');
-
-        // Hide the decision UI and black overlay
+        const yesAudio = new Audio('audio/videoAudio/aliceYes20.mp3');
         uiControl.hideDecisionUI();
         uiControl.hideBlackOverlay();
 
-        // Play the new video
+        // Resume video playback
         document.getElementById('cutsceneVideo').play();
 
-        // Start the countdown
+        // Start countdown
         uiControl.startCountdown();
+        yesAudio.play();
     }
 
-    // Function for clicking no
     function noButton() {
-        // Play the video first
-        document.getElementById('cutsceneVideo').play();
+        const noAudio = new Audio('audio/videoAudio/aliceNo.mp3');
+        uiControl.hideDecisionUI();
         uiControl.hideBlackOverlay();
 
-        const noAudio = new Audio('audio/videoAudio/aliceNo.mp3');
-        noAudio.play();
+        // Resume video playback
+        document.getElementById('cutsceneVideo').play();
+
+        // Hide the No button
         document.getElementById('noButton').style.display = 'none';
 
-        uiControl.hideDecisionUI();
-
-        // Pause video when audio ends
+        noAudio.play();
         noAudio.onended = () => {
-            document.getElementById('cutsceneVideo').pause();
+            // Show the black overlay and decision UI again
             uiControl.showBlackOverlay();
             uiControl.showDecisionUI();
+            // Pause the video
+            document.getElementById('cutsceneVideo').pause();
         };
     }
 
-    // Function to replay video 
+
+
+    // Function to replay video
     function replayButton() {
-        // Play the original video when 'replay' is clicked
-        videoControl.play('videos/cutscene01.mp4');
+        // Reset the video to the beginning
+        const video = document.getElementById('cutsceneVideo');
+        video.currentTime = 0;
+
+        // Play the video
+        video.play();
+
+        // Hide decision UI and reset any necessary flags or states
         uiControl.hideDecisionUI();
+        // Reset flags
+        window.queenVoicePlayed = false;
+        window.aliceVoicePlayed = false;
+        window.videoFirstPause = false;
     }
+
 
     return {
         init: addButtonListeners
@@ -381,7 +371,7 @@ const aiDialogue = (function() {
         // Extract and filter player names to a list
         let playerNamesList = Object.values(playerNames).filter(name => name);
         // Base dialogue for the Alice character
-        let dialogue = "And now she's trapped us all in Wonderland. But here's the problem. The jewels are not here, they are lost in your world. Please can you find them for me? I wish you the best of luck";
+        let dialogue = "And now she's trapped us all in Wonderland. But here's the problem. The jewels are not here, they are lost in your world. Please can you find them for me? I would really appreciate it,";
         // Add dialogue addressing multiple players
         if (playerNamesList.length > 1) {
             const lastPlayerName = playerNamesList.pop();
