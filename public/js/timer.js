@@ -46,3 +46,19 @@ let timeRemaining = INIT_TIME;
     await wait(1);
   }
 })();
+
+// Function to reset the game and navigate back to index.html
+function resetGame() {
+  // Navigate back to index.html
+  window.location.href = 'index.html';
+}
+(async () => {
+  // Continue the loop while there is time remaining
+  while (timeRemaining > 0) {
+    // ... (Your existing timer code)
+    await wait(1);
+  }
+
+  // Time is up, show the game over modal
+  $('#gameOverModal').modal('show');
+})();
