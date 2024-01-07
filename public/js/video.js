@@ -28,7 +28,6 @@ const videoControl = (function() {
         video.ontimeupdate = () => onVideoTime();
     }
 
-    // Function to play video
     function playVideo(source) {
         if (source) {
             video.src = source;
@@ -36,6 +35,9 @@ const videoControl = (function() {
         }
 
         uiControl.hideStartUI();
+
+        // Start playing the video immediately
+        video.play();
 
         // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
@@ -45,36 +47,34 @@ const videoControl = (function() {
         let queenDialogue = aiDialogue.queen(playerNames);
         let aliceDialogue = aiDialogue.alice(playerNames);
 
+        // Preload voices asynchronously
         Promise.all([
             aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
             aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
-        ]).then(() => {
-            video.play();
-        }).catch(error => {
+        ]).catch(error => {
             console.error('Error preloading voices:', error);
-            video.play(); // Play video even if voice loading fails
         });
     }
 
-
+    // Function for playing queen's voice
     function playQueenVoice() {
-        console.log("Attempting to play Queen's voice");
         if (window['Queen of HeartsAudioURL']) {
-            // Clear any existing timer for Alice's voice
-            clearTimeout(aliceVoiceTimer);
-
-            console.log("Playing Queen's voice");
             const queenAudio = new Audio(window['Queen of HeartsAudioURL']);
             queenAudio.play();
             queenAudio.onended = () => {
-                console.log("Queen's voice ended, now setting timer for Alice's voice");
                 playAliceVoice();
             };
         } else {
-            console.error("Queen's voice URL not found");
+            console.log("Using backup for Queen's voice");
+            const queenBackupAudio = new Audio('./audio/queenBackup.mp3');
+            queenBackupAudio.play();
+            queenBackupAudio.onended = () => {
+                playAliceVoice();
+            };
         }
     }
 
+    // Function to play Alice's voice
     function playAliceVoice() {
         console.log("Setting timer to play Alice's voice after delay");
         aliceVoiceTimer = setTimeout(() => {
@@ -89,6 +89,7 @@ const videoControl = (function() {
         }, 4000); // 4-second delay
     }
 
+    // Function to play audio at designated times in the video
     function onVideoTime() {
         console.log("Video currentTime:", video.currentTime);
         if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed) {
@@ -97,7 +98,6 @@ const videoControl = (function() {
             playQueenVoice();
         }
     }
-
 
     // Display new UI at the end of the video and reset voice flags
     function onVideoEnd() {

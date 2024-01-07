@@ -9,7 +9,7 @@
         "Mad Hatter": { 
             "voiceId": "iZB49K1wCuvAt8IC3y3Y",
             "stability": 0.5,
-            "similarityBoost": 0.8,
+            "similarityBoost": 0.5,
             "style": 1
         },
         "White Rabbit": { 
@@ -20,8 +20,8 @@
         },
         "Queen of Hearts": {
             "voiceId": "RvTLvBg1CG9nZgWH7ZD6",
-            "stability": 0.3,
-            "similarityBoost": 1,
+            "stability": 0.5,
+            "similarityBoost": 0.8,
             "style": 1
         },
         "March Hare": {

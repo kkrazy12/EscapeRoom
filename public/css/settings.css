@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Alagard', Courier, monospace;
+    padding-top: 5px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/background2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+    animation: hueRotateAnimation 8s infinite linear;
+}
+
+@keyframes hueRotateAnimation {
+    0%, 100% { filter: hue-rotate(0deg) saturate(1); }
+    33% { filter: hue-rotate(90deg) saturate(1.5); } 
+    66% { filter: hue-rotate(180deg) saturate(1.5); } 
+}
+
+h1 {
+    font-size: 4em;
+    margin: 0px;
+    color: #00CC99;
+    font-family: 'Chickweed', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.divider {
+    max-width: 70%;
+    height: auto;
+    margin: 0.1em;
+}
+
+select, textarea {
+    width: 80%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: black;
+    color: white;
+    font-family: 'Alagard', sans-serif;
+    font-size: 1.2em;
+}
+
+button, .navButton {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid gray;
+    transition: background-color 1s, transform 1s;
+    font-family: 'Alagard', sans-serif;
+}
+
+button:hover, .navButton:hover {
+    background-color: #00ffbb80;
+    color: white;
+}
+
+audio {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#loadingIndicator {
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Alagard', sans-serif;
+    display: none;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button-row > * {
+    margin: 0 10px;
+}
+
+#audioPlayer {
+    display: none;
+}
+
+a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    select, textarea {
+        font-size: 1em;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .button-row > * {
+        margin: 10px 0;
+    }
+}
