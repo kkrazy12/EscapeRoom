@@ -1,20 +1,24 @@
-/* This script simulates a rotary phone interface. It holds all functionalities
-   within an object (vObj) and an initialisation function (init) to avoid global variables.
-   The script handles user interactions, animations, and simulates phone call actions. */
+/* Rotary Phone Interface Simulation Script
+   This script creates a functional rotary phone interface on the web page.
+   It handles user interactions, animations, and simulates phone call actions. */
 
-   var vObj = {
-    ani: 0,
-    bar: undefined,
-    conCl: undefined,
-    lines: undefined,
-    numArr: [],
-    numCount: 0,
-    nums: undefined,
-    title: undefined,
-    dialSound: new Audio('./audio/directoryAudio/rotaryDialToneExtended.mp3'),
-    currentAudio: null,
+// Main object to hold all functionalities and avoid global variables
+var vObj = {
+    ani: 0,  // Animation state flag
+    bar: undefined,  // Reference to the bar element for animations
+    conCl: undefined,  // Class list of the container element
+    lines: undefined,  // Collection of line elements for display
+    numArr: [],  // Array to store dialed numbers
+    numCount: 0,  // Count of numbers dialed
+    nums: undefined,  // Collection of number elements
+    title: undefined,  // Reference to the title element for display
+    dialSound: new Audio('./audio/directoryAudio/rotaryDialToneExtended.mp3'),  // Dial sound file
+    currentAudio: null,  // Current audio being played
 
+      // Predefined audio files for specific number sequences
     mp3Sequences: {
+        // Mapping of number sequences to audio file paths
+        // Each sequence is associated with a specific audio file
         '1234567890': './audio/directoryAudio/0001.mp3', 
         '2222222222': './audio/directoryAudio/0002.wav',  
         '3333333333': './audio/directoryAudio/0003.wav',  
@@ -27,6 +31,7 @@
         '1111111111': './audio/directoryAudio/0010.mp3'
     },
 
+     // Method to hide the 'End Call' button
     hideEndCallButton: function() {
         var endCallButton = document.querySelector('.end-call-button');
         if (endCallButton) {
@@ -34,6 +39,7 @@
         }
     },
 
+    // Method to show the 'End Call' button
     showEndCallButton: function() {
         var endCallButton = document.querySelector('.end-call-button');
         if (endCallButton) {
@@ -41,6 +47,7 @@
         }
     },
 
+    // Method to handle call actions when a number sequence is dialed
     call: function() {
         if (this.numCount == 10) {
             var dialedNumber = this.numArr.join('');
@@ -64,7 +71,7 @@
             }
         }
     },
-
+  // Method to handle the hang-up action and stop the audio
     hangUp: function() {
         if (this.currentAudio) {
             this.currentAudio.pause();
@@ -75,7 +82,7 @@
         this.title.innerHTML = "Ready to Dial";
         this.hideEndCallButton();
     },
-
+// Method to clear dialed numbers and reset the interface
     clearFun: function() {
         this.numArr = [];
         this.link.setAttribute('href', '#');
@@ -87,7 +94,7 @@
             this.nums[i].innerHTML = "";
         }
     },
-
+// Utility method to remove specific classes from elements
     prune: function(list, tExp) {
         for (let p = 0; p < list.length; p++) {
             if (tExp.test(list[p])) {
@@ -96,7 +103,7 @@
             }
         }
     },
-
+// Method to handle number button clicks
     numClick: function(num, deg) {
         if (!this.ani && this.numCount < 10) {
             this.dialSound.play();
@@ -123,7 +130,7 @@
             }
         }
     },
-
+// Helper methods for updating the display after dialing a number
     updateDisplayForFinalNumber: function(num) {
         this.nums[9].classList.remove('rAFade');
         this.title.innerHTML = "Click<br> to Call";
@@ -137,7 +144,7 @@
         this.nums[this.numCount].classList.add('rAFade');
     }
 };
-
+// Initialisation function to set up the rotary phone interface after page load
 function init() {
     vObj.title = document.getElementById('title');
     vObj.conCl = document.getElementById('con1').classList;
@@ -151,9 +158,10 @@ function init() {
             vObj.hangUp();
         });
     }
-    vObj.hideEndCallButton();
+    vObj.hideEndCallButton(); // Hide the 'End Call' button initially
 }
 
+// Run the initialisation function when the window loads
 window.onload = init;
 
   
