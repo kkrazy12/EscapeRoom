@@ -2,26 +2,6 @@
 async function aiVoice(character, textToSpeak) {
     console.log(`Generating AI voice for ${character}`);
 
-    // Fetch the voice list from the server
-    let voiceList;
-    try {
-        const response = await fetch('/voiceList');
-        if (!response.ok) {
-            throw new Error('Failed to fetch voice list');
-        }
-        voiceList = await response.json();
-    } catch (error) {
-        console.error('Error fetching voice list:', error);
-        return;
-    }
-
-    // Get the voice ID for the chosen character
-    const voiceId = voiceList.voices[character];
-    if (!voiceId) {
-        console.error(`Voice ID not found for character: ${character}`);
-        return;
-    }
-
     // Sends a request to create audio to the endpoint
     try {
         const response = await fetch('/speak', {
@@ -30,7 +10,7 @@ async function aiVoice(character, textToSpeak) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                voiceId: voiceId,
+                character: character,
                 textInput: textToSpeak
             }), // Send as JSON
         });

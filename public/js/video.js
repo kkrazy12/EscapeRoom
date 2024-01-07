@@ -34,40 +34,70 @@ const videoControl = (function() {
             video.src = source;
             video.load();
         }
-        video.play();
+
         uiControl.hideStartUI();
 
-        // Retrieve player count from localStorage
+        // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
-        // Get player names
         const playerNames = playerInputControl.getPlayerNames(playerCount);
 
-        // Generate Queen and Alice's voices
+        // Generate Queen and Alice's dialogues
         let queenDialogue = aiDialogue.queen(playerNames);
         let aliceDialogue = aiDialogue.alice(playerNames);
 
-        aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3').catch(error => {
-            console.error('Error preloading Queen of Hearts voice:', error);
+        Promise.all([
+            aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
+            aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
+        ]).then(() => {
+            video.play();
+        }).catch(error => {
+            console.error('Error preloading voices:', error);
+            video.play(); // Play video even if voice loading fails
         });
-        aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3').catch(error => {
-            console.error('Error preloading Alice voice:', error);
-        });
+    }
+
+
+    function playQueenVoice() {
+        console.log("Attempting to play Queen's voice");
+        if (window['Queen of HeartsAudioURL']) {
+            // Clear any existing timer for Alice's voice
+            clearTimeout(aliceVoiceTimer);
+
+            console.log("Playing Queen's voice");
+            const queenAudio = new Audio(window['Queen of HeartsAudioURL']);
+            queenAudio.play();
+            queenAudio.onended = () => {
+                console.log("Queen's voice ended, now setting timer for Alice's voice");
+                playAliceVoice();
+            };
+        } else {
+            console.error("Queen's voice URL not found");
+        }
+    }
+
+    function playAliceVoice() {
+        console.log("Setting timer to play Alice's voice after delay");
+        aliceVoiceTimer = setTimeout(() => {
+            console.log("Attempting to play Alice's voice");
+            if (!window.aliceVoicePlayed && window['AliceAudioURL']) {
+                console.log("Playing Alice's voice");
+                new Audio(window['AliceAudioURL']).play();
+                window.aliceVoicePlayed = true;
+            } else if (!window['AliceAudioURL']) {
+                console.error("Alice's voice URL not found");
+            }
+        }, 4000); // 4-second delay
     }
 
     function onVideoTime() {
-        if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed && window['Queen of HeartsAudioURL']) {
-            new Audio(window['Queen of HeartsAudioURL']).play();
+        console.log("Video currentTime:", video.currentTime);
+        if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed) {
+            console.log("Triggering Queen's voice");
             window.queenVoicePlayed = true;
-
-            // Set a timer to play Alice's voice 15 seconds after Queen's voice
-            aliceVoiceTimer = setTimeout(() => {
-                if (!window.aliceVoicePlayed && window['AliceAudioURL']) {
-                    new Audio(window['AliceAudioURL']).play();
-                    window.aliceVoicePlayed = true;
-                }
-            }, 15000);
+            playQueenVoice();
         }
     }
+
 
     // Display new UI at the end of the video and reset voice flags
     function onVideoEnd() {
@@ -107,7 +137,8 @@ const videoControl = (function() {
 
     return {
         load: loadVideo,
-        play: playVideo
+        play: playVideo,
+        onVideoTime: onVideoTime,
     };
 })();
 
@@ -208,8 +239,8 @@ const uiControl = (function() {
                     clearInterval(countdownInterval);
                     countdownTimerElement.style.display = 'none'; // Hide countdown timer
 
-                    // Redirect to timer page or next step
-                    window.location.href = 'timer.html';
+                    // Redirect to main page
+                    window.location.href = 'mainPage.html';
                 }
 
                 countdown -= 1; // Decrease countdown

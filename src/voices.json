@@ -1,12 +1,64 @@
 {
     "voices": {
-        "Alice": "MXTsuomR2xwiCMNQfqbI",
-        "Mad Hatter": "iZB49K1wCuvAt8IC3y3Y",
-        "White Rabbit": "93WD1zZl7ByACS47Fs6I",
-        "Queen of Hearts": "RvTLvBg1CG9nZgWH7ZD6",
-        "March Hare": "6TsiNB9ZGRvtjDSzWb2P",
-        "Caterpillar": "BAR6Mrt1qLc8tMSJg8La",
-        "Tweedledum": "BB58EV6Fdt0RfLJMJAwS",
-        "Cheshire Cat": "uRrTI7uLbJcNUkYqTwnE"
+        "Alice": { 
+            "voiceId": "MXTsuomR2xwiCMNQfqbI",
+            "stability": 0.5,
+            "similarityBoost": 0.8,
+            "style": 1
+        },
+        "Mad Hatter": { 
+            "voiceId": "iZB49K1wCuvAt8IC3y3Y",
+            "stability": 0.5,
+            "similarityBoost": 0.8,
+            "style": 1
+        },
+        "White Rabbit": { 
+            "voiceId": "93WD1zZl7ByACS47Fs6I",
+            "stability": 0.5,
+            "similarityBoost": 0.8,
+            "style": 1
+        },
+        "Queen of Hearts": {
+            "voiceId": "RvTLvBg1CG9nZgWH7ZD6",
+            "stability": 0.3,
+            "similarityBoost": 1,
+            "style": 1
+        },
+        "March Hare": {
+            "voiceId": "6TsiNB9ZGRvtjDSzWb2P",
+            "stability": 0.3,
+            "similarityBoost": 0.7,
+            "style": 1
+        },
+        "Caterpillar": {
+            "voiceId": "BAR6Mrt1qLc8tMSJg8La",
+            "stability": 0.3,
+            "similarityBoost": 1,
+            "style": 1
+        },
+        "Tweedledum": {
+            "voiceId": "BB58EV6Fdt0RfLJMJAwS",
+            "stability": 0.2,
+            "similarityBoost": 0.9,
+            "style": 1
+        },
+        "Cheshire Cat": {
+            "voiceId": "uRrTI7uLbJcNUkYqTwnE",
+            "stability": 0.3,
+            "similarityBoost": 0.6,
+            "style": 1
+        },
+        "Doorknob": {
+            "voiceId": "sGd4O8Px7IAzvqHHiqq1",
+            "stability": 0.3,
+            "similarityBoost": 0.6,
+            "style": 1
+        },
+        "King of Hearts": {
+            "voiceId": "kmXaSJ5XXNB4BYFEEeiZ",
+            "stability": 0.3,
+            "similarityBoost": 0.6,
+            "style": 1
+        }
     }
 }
