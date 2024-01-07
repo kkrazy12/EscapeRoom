@@ -12,21 +12,12 @@ body {
     background-size: cover;
 }
 
-.timer-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
 .main-btns {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    margin: 20px auto;
+    margin: auto;
     height: 40vh;
 }
 
@@ -104,11 +95,27 @@ font-size: 40px;
     width: 200px;
 }
 
+
+.timer-container {
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    border: solid 5px darkred;
+    margin: 35px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
 .timer .progress-container {
     width: 100%;
     border: 1px solid black;
     --height: 20px;
     height: var(--height);
+}
+
+.display {
+    font-size: 35px;
 }
 
 :root {

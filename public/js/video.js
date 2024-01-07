@@ -6,6 +6,7 @@
 
 window.queenVoicePlayed = false;
 window.aliceVoicePlayed = false;
+window.videoFirstPause = false;
 
 const QUEEN_SCENE_TIME = 54;
 
@@ -24,79 +25,84 @@ const videoControl = (function() {
     function loadVideo() {
         const startButton = document.getElementById('startButton');
         startButton.addEventListener('click', () => playVideo());
-        video.onended = onVideoEnd;
         video.ontimeupdate = () => onVideoTime();
     }
 
-    // Function to play video
     function playVideo(source) {
         if (source) {
             video.src = source;
             video.load();
         }
-        video.play();
+
         uiControl.hideStartUI();
 
-        // Retrieve player count from localStorage
+        // Start playing the video immediately
+        video.play();
+
+        // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
-        // Get player names
         const playerNames = playerInputControl.getPlayerNames(playerCount);
 
-        // Generate Queen and Alice's voices
+        // Generate Queen and Alice's dialogues
         let queenDialogue = aiDialogue.queen(playerNames);
         let aliceDialogue = aiDialogue.alice(playerNames);
 
-        aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3').catch(error => {
-            console.error('Error preloading Queen of Hearts voice:', error);
-        });
-        aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3').catch(error => {
-            console.error('Error preloading Alice voice:', error);
+        // Preload voices asynchronously
+        Promise.all([
+            aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
+            aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
+        ]).catch(error => {
+            console.error('Error preloading voices:', error);
         });
     }
 
-    function onVideoTime() {
-        if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed && window['Queen of HeartsAudioURL']) {
-            new Audio(window['Queen of HeartsAudioURL']).play();
-            window.queenVoicePlayed = true;
-
-            // Set a timer to play Alice's voice 15 seconds after Queen's voice
-            aliceVoiceTimer = setTimeout(() => {
-                if (!window.aliceVoicePlayed && window['AliceAudioURL']) {
-                    new Audio(window['AliceAudioURL']).play();
-                    window.aliceVoicePlayed = true;
-                }
-            }, 15000);
+    // Function for playing queen's voice
+    function playQueenVoice() {
+        if (window['Queen of HeartsAudioURL']) {
+            const queenAudio = new Audio(window['Queen of HeartsAudioURL']);
+            queenAudio.play();
+            queenAudio.onended = () => {
+                playAliceVoice();
+            };
+        } else {
+            console.log("Using backup for Queen's voice");
+            const queenBackupAudio = new Audio('./audio/queenBackup.mp3');
+            queenBackupAudio.play();
+            queenBackupAudio.onended = () => {
+                playAliceVoice();
+            };
         }
     }
 
-    // Display new UI at the end of the video and reset voice flags
-    function onVideoEnd() {
-        // Change the video source to the second video file
-        video.src = 'videos/cutscene02.mp4';
+    // Function to play Alice's voice
+    function playAliceVoice() {
+        console.log("Setting timer to play Alice's voice after delay");
+        aliceVoiceTimer = setTimeout(() => {
+            console.log("Attempting to play Alice's voice");
+            if (!window.aliceVoicePlayed && window['AliceAudioURL']) {
+                console.log("Playing Alice's voice");
+                new Audio(window['AliceAudioURL']).play();
+                window.aliceVoicePlayed = true;
+            } else if (!window['AliceAudioURL']) {
+                console.error("Alice's voice URL not found");
+            }
+        }, 4000); // 4-second delay
+    }
 
-        // Add the fade-in effect
-        video.classList.add('fade-in');
-        video.load();
+    function onVideoTime() {
+        console.log("Video currentTime:", video.currentTime);
+        if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed) {
+            console.log("Triggering Queen's voice");
+            window.queenVoicePlayed = true;
+            playQueenVoice();
+        }
 
-        // Remove the fade-in effect once the video starts playing
-        video.onplay = () => {
-            video.classList.remove('fade-in');
-        };
-
-        // Load and play the new video
-        video.load();
-        video.play();
-        // Pause the video initially
-        video.pause();
-
-        // Show black overlay
-        uiControl.showBlackOverlay();
-
-        // Show Decision UI
-        uiControl.showDecisionUI();
-
-        // Reset voice flags
-        resetVoiceFlags();
+        if (video.currentTime >= 87 && !video.paused && !window.videoFirstPause) {
+            video.pause();
+            uiControl.showBlackOverlay();
+            uiControl.showDecisionUI();
+            window.videoFirstPause = true; // Set flag to true after pausing
+        }
     }
 
     // Reset voice flags to allow for replaying voices
@@ -107,7 +113,8 @@ const videoControl = (function() {
 
     return {
         load: loadVideo,
-        play: playVideo
+        play: playVideo,
+        onVideoTime: onVideoTime,
     };
 })();
 
@@ -191,10 +198,10 @@ const uiControl = (function() {
         });
     }
 
-    // Start a countdown from 0 to 5
+    // Start countdown from 5
     function startCountdown() {
+        // Delay for 3 seconds before starting the countdown
         setTimeout(() => {
-            // Start countdown from 5
             let countdown = 5;
             const countdownTimerElement = document.getElementById('countdownTimer');
             countdownTimerElement.style.display = 'block';
@@ -208,14 +215,16 @@ const uiControl = (function() {
                     clearInterval(countdownInterval);
                     countdownTimerElement.style.display = 'none'; // Hide countdown timer
 
-                    // Redirect to timer page or next step
-                    window.location.href = 'timer.html';
+                    // Redirect to main page
+                    window.location.href = 'mainPage.html';
                 }
 
                 countdown -= 1; // Decrease countdown
             }, 1000);
-        }, 3000); // Delays for 3 seconds before beginning
+        }, 3000); // 3-second delay before countdown starts
     }
+
+
 
     return {
         createElement: createElement,
@@ -281,46 +290,58 @@ const eventBinding = (function() {
     }
 
     function yesButton() {
-        // Play the 'yes' response audio
-        playAudio('audio/videoAudio/aliceYes20.mp3');
-
-        // Hide the decision UI and black overlay
+        const yesAudio = new Audio('audio/videoAudio/aliceYes20.mp3');
         uiControl.hideDecisionUI();
         uiControl.hideBlackOverlay();
 
-        // Play the new video
+        // Resume video playback
         document.getElementById('cutsceneVideo').play();
 
-        // Start the countdown
+        // Start countdown
         uiControl.startCountdown();
+        yesAudio.play();
     }
 
-    // Function for clicking no
     function noButton() {
-        // Play the video first
-        document.getElementById('cutsceneVideo').play();
+        const noAudio = new Audio('audio/videoAudio/aliceNo.mp3');
+        uiControl.hideDecisionUI();
         uiControl.hideBlackOverlay();
 
-        const noAudio = new Audio('audio/videoAudio/aliceNo.mp3');
-        noAudio.play();
+        // Resume video playback
+        document.getElementById('cutsceneVideo').play();
+
+        // Hide the No button
         document.getElementById('noButton').style.display = 'none';
 
-        uiControl.hideDecisionUI();
-
-        // Pause video when audio ends
+        noAudio.play();
         noAudio.onended = () => {
-            document.getElementById('cutsceneVideo').pause();
+            // Show the black overlay and decision UI again
             uiControl.showBlackOverlay();
             uiControl.showDecisionUI();
+            // Pause the video
+            document.getElementById('cutsceneVideo').pause();
         };
     }
 
-    // Function to replay video 
+
+
+    // Function to replay video
     function replayButton() {
-        // Play the original video when 'replay' is clicked
-        videoControl.play('videos/cutscene01.mp4');
+        // Reset the video to the beginning
+        const video = document.getElementById('cutsceneVideo');
+        video.currentTime = 0;
+
+        // Play the video
+        video.play();
+
+        // Hide decision UI and reset any necessary flags or states
         uiControl.hideDecisionUI();
+        // Reset flags
+        window.queenVoicePlayed = false;
+        window.aliceVoicePlayed = false;
+        window.videoFirstPause = false;
     }
+
 
     return {
         init: addButtonListeners
@@ -350,7 +371,7 @@ const aiDialogue = (function() {
         // Extract and filter player names to a list
         let playerNamesList = Object.values(playerNames).filter(name => name);
         // Base dialogue for the Alice character
-        let dialogue = "And now she's trapped us all in Wonderland. But here's the problem. The jewels are not here, they are lost in your world. Please can you find them for me? I wish you the best of luck";
+        let dialogue = "And now she's trapped us all in Wonderland. But here's the problem. The jewels are not here, they are lost in your world. Please can you find them for me? I would really appreciate it,";
         // Add dialogue addressing multiple players
         if (playerNamesList.length > 1) {
             const lastPlayerName = playerNamesList.pop();

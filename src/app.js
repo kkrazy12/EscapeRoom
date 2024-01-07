@@ -20,9 +20,8 @@ app.use(express.json()); // For parsing JSON in POST requests
 
 // Setup ElevenLabs text-to-speech
 const voice = new ElevenLabs({
-    apiKey: process.env.ELEVENLABS_API_KEY,
-    voiceId: "MXTsuomR2xwiCMNQfqbI",
-})
+    apiKey: process.env.ELEVENLABS_API_KEY
+});
 
 // Create a HTTP server using the Express app
 const server = require('http').createServer(app);
@@ -68,15 +67,21 @@ app.get('/voiceList', (req, res) => {
 // Function for text-to-speech generation 
 app.post('/speak', function(req, res) {
     const textInput = req.body.textInput;
-    const voiceId = req.body.voiceId; 
+    const character = req.body.character;
+
+    const voiceSettings = voiceList.voices[character];
+    if (!voiceSettings) {
+        res.status(400).send('Character not found');
+        return;
+    }
 
     voice.textToSpeech({
-        voiceId: voiceId,
+        voiceId: voiceSettings.voiceId,
         textInput: textInput,
         fileName: filePath,
-        stability: 0.5,
-        similarityBoost: 0.8, 
-        style: 1,
+        stability: voiceSettings.stability,
+        similarityBoost: voiceSettings.similarityBoost, 
+        style: voiceSettings.style,
         "use_speaker_boost": true,
     }).then(() => {
         fs.readFile(filePath, (err, data) => {
@@ -93,7 +98,6 @@ app.post('/speak', function(req, res) {
         res.status(500).send('Error generating speech');
     });
 });
-
 
 // Serve files from the public directory
 app.use(express.static('public'));
@@ -121,4 +125,3 @@ const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-
