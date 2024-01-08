@@ -62,3 +62,27 @@ function resetGame() {
   // Time is up, show the game over modal
   $('#gameOverModal').modal('show');
 })();
+
+
+// Enter four digit code into input field
+function checkPin() {
+  const userPin1 = document.getElementById('userPin1').value;
+  const userPin2 = document.getElementById('userPin2').value;
+  const userPin3 = document.getElementById('userPin3').value;
+  const userPin4 = document.getElementById('userPin4').value;
+
+  const resultDiv = document.getElementById("result");
+  var pin = userPin1 + userPin2 + userPin3 + userPin4;
+console.log(pin)
+  // Check if the entered pin is correct (1234)
+  if (pin === "1234") {
+      resultDiv.textContent = "Access Granted! 🎉";
+      resultDiv.style.color = "green";
+  } else {
+      resultDiv.textContent = "Access Unsuccessful. Please try again.";
+      resultDiv.style.color = "red";
+  }
+
+  // Clear the input field
+  //document.getElementById("pinInput").value = "";
+}

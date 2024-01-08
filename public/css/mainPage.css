@@ -21,17 +21,31 @@ body {
     height: 40vh;
 }
 
-.main-btns .links .btn-names{
+.main-btns .links .btn-names, .backup-puzzles .btn-names{
     font-size: 20px;
 }
 
-.fa-puzzle-piece:before, .fa-address-book-o:before {
+
+.fa-puzzle-piece:before, .fa-address-book-o:before, .fa-key:before {
     font-size: 40px;
     padding-right: 8px;
 }
 
 .fa-pagelines:before, .fa-phone:before {
 font-size: 40px;
+}
+
+#pinFormBtn {
+    width: 250px;
+    background-color: black;
+    color: white;
+}
+
+#pinFormBtn:hover{
+    color: #00ffbf;
+    text-shadow: -2px 0px 12px #09ed6c;
+    background-color: black;  
+    border: 3px solid goldenrod; 
 }
 
 .links {
@@ -65,7 +79,7 @@ font-size: 40px;
     width: 100%;
 }
 
-.backup-puzzles button:hover, .backup-puzzles a:hover {
+.backup-puzzles button:hover, .backup-puzzles a:hover{
     color: #00ffbf;
     text-shadow: -2px 0px 12px #09ed6c;
     background-color: black;
@@ -164,3 +178,36 @@ font-size: 40px;
     .modal-footer{
         justify-content: center;
     }
+    
+    .pin-container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    input {
+        padding: 10px;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+    
+    button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .close-top-right {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    
+    
