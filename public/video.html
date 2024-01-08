@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <title>Opening Cutscene | Cyber Wonderland</title>
     <link rel="stylesheet" type="text/css" href="./css/cutscene.css">
+
+    <!-- Font Awesome stylesheet for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://kit.fontawesome.com/ea878f8687.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Video tag for embedding the cutscene -->
     <video id="cutsceneVideo">
         <source src="videos/cutscene01.mp4" type="video/mp4">
+        <!-- Track for captions -->
+        <track label="English" kind="subtitles" srclang="en" src="./videos/cutscene01_captions.vtt">
         Your browser does not support the video tag.
     </video>
 
@@ -30,6 +36,14 @@
         <button class="replayButton" id="replayButton">Rewatch Video</button>
     </div>
 
+    <div class="buttonContainer" style="display: none;">
+        <button class="captionsButton" id="captionsButton">Captions</button>
+        <a href="mainPage.html">
+            <button class="skipButton">Skip</button>
+        </a>
+        </div>
+    </div>
+    
     <!-- External javascript for functionality -->
     <script src="./js/aiVoices.js"></script>
     <script src="./js/video.js"></script>

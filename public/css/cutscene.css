@@ -143,3 +143,28 @@ video.fade-in {
     opacity: 1;
     transition: opacity 0.5s ease;
 }
+
+/* Buttons */
+.buttonContainer {
+    position: absolute;
+    left: 50%;
+    top: 20px; /* Changed from bottom to top */
+    transform: translateX(-50%); 
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer button {
+    padding: 10px 20px; 
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .buttonContainer button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
