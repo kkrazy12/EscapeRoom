@@ -7,6 +7,7 @@
 window.queenVoicePlayed = false;
 window.aliceVoicePlayed = false;
 window.videoFirstPause = false;
+window.audioPlaying = false;
 
 const QUEEN_SCENE_TIME = 54;
 
@@ -37,7 +38,7 @@ const videoControl = (function() {
         uiControl.hideStartUI();
 
         // Start playing the video immediately
-        
+
 
         // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
@@ -47,51 +48,75 @@ const videoControl = (function() {
         let queenDialogue = aiDialogue.queen(playerNames);
         let aliceDialogue = aiDialogue.alice(playerNames);
 
+        uiControl.createLoadingOverlay();
+
         // Preload voices asynchronously
         Promise.all([
-            aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
-            aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
-        ])
-        .then(() => {
-            video.play();
-        })
-        .catch(error => {
-            console.error('Error preloading voices:', error);
-        });
+                aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
+                aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
+            ])
+            .then(() => {
+                video.play();
+                uiControl.hideLoadingOverlay();
+            })
+            .catch(error => {
+                console.error('Error preloading voices:', error);
+            });
     }
 
-    // Function for playing queen's voice
     function playQueenVoice() {
-        if (window['Queen of HeartsAudioURL']) {
-            const queenAudio = new Audio(window['Queen of HeartsAudioURL']);
+        console.log("Attempting to play Queen's voice");
+        if (!window.audioPlaying) {
+            console.log("Playing Queen's voice");
+            window.audioPlaying = true; // Set flag before playing
+            let queenAudio = window['Queen of HeartsAudioURL'] ? new Audio(window['Queen of HeartsAudioURL']) : new Audio('./audio/queenBackup.mp3');
+
             queenAudio.play();
             queenAudio.onended = () => {
+                console.log("Queen's voice ended");
+                window.audioPlaying = false; // Reset flag after playing
                 playAliceVoice();
             };
         } else {
-            console.log("Using backup for Queen's voice");
-            const queenBackupAudio = new Audio('./audio/queenBackup.mp3');
-            queenBackupAudio.play();
-            queenBackupAudio.onended = () => {
-                playAliceVoice();
-            };
+            console.log("Audio already playing, cannot play Queen's voice now");
         }
     }
 
     // Function to play Alice's voice
     function playAliceVoice() {
-        console.log("Setting timer to play Alice's voice after delay");
-        aliceVoiceTimer = setTimeout(() => {
-            console.log("Attempting to play Alice's voice");
-            if (!window.aliceVoicePlayed && window['AliceAudioURL']) {
+        // Check if no other audio is currently playing and Alice's voice has not been played yet
+        if (!window.audioPlaying && !window.aliceVoicePlayed) {
+            console.log("Preparing to play Alice's voice");
+
+            // Set flags to indicate that an audio is about to play and that Alice's voice is being played
+            window.audioPlaying = true;
+            window.aliceVoicePlayed = true;
+
+            // Set a delay before playing Alice's voice
+            let aliceAudioTimer = setTimeout(() => {
                 console.log("Playing Alice's voice");
-                new Audio(window['AliceAudioURL']).play();
-                window.aliceVoicePlayed = true;
-            } else if (!window['AliceAudioURL']) {
-                console.error("Alice's voice URL not found");
-            }
-        }, 4000); // 4-second delay
+
+                // Choose the Alice audio source: either the generated voice or a backup file
+                let aliceAudio = window['AliceAudioURL'] ? new Audio(window['AliceAudioURL']) : new Audio('./audio/aliceBackup.mp3');
+
+                // Play the Alice audio
+                aliceAudio.play();
+
+                // When the Alice audio ends, reset the audio playing flag
+                aliceAudio.onended = () => {
+                    console.log("Alice's voice playback ended");
+                    window.audioPlaying = false;
+                };
+            }, 4000); // 4-second delay to ensure separation from previous audio
+
+            // Log the setup of the timer for Alice's voice
+            console.log("Timer set for Alice's voice with a 4-second delay");
+        } else {
+            // Log if Alice's voice cannot be played due to either an audio already playing or it has already been played
+            console.log("Cannot play Alice's voice: Either an audio is already playing or Alice's voice has already been played");
+        }
     }
+
 
     function onVideoTime() {
         console.log("Video currentTime:", video.currentTime);
@@ -162,6 +187,45 @@ const uiControl = (function() {
         blackOverlay.style.opacity = '0';
         blackOverlay.style.transition = 'opacity 1s ease';
         document.body.appendChild(blackOverlay);
+    }
+
+    function createLoadingOverlay() {
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.id = 'loadingOverlay';
+        loadingOverlay.style.position = 'fixed';
+        loadingOverlay.style.top = '0';
+        loadingOverlay.style.left = '0';
+        loadingOverlay.style.width = '100%';
+        loadingOverlay.style.height = '100%';
+        loadingOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        loadingOverlay.style.zIndex = '10';
+        loadingOverlay.style.display = 'flex';
+        loadingOverlay.style.flexDirection = 'column';
+        loadingOverlay.style.justifyContent = 'center';
+        loadingOverlay.style.alignItems = 'center';
+        loadingOverlay.style.fontFamily = 'Alagard';
+
+        const loadingText = document.createElement('div');
+        loadingText.innerText = 'TECHSCAPE PRODUCTIONS';
+        loadingText.style.color = '#00CC99';
+        loadingText.style.fontSize = '3em'; // 
+        loadingOverlay.appendChild(loadingText);
+
+        const infoText = document.createElement('p');
+        infoText.style.color = 'white';
+        infoText.style.fontSize = '2em';
+        infoText.innerText = 'Presents';
+        loadingOverlay.appendChild(infoText);
+
+        document.body.appendChild(loadingOverlay);
+    }
+
+    // Function to hide the loading overlay
+    function hideLoadingOverlay() {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+        }
     }
 
     // Function to show the black overlay
@@ -239,7 +303,9 @@ const uiControl = (function() {
         startCountdown: startCountdown,
         createBlackOverlay: createBlackOverlay,
         showBlackOverlay: showBlackOverlay,
-        hideBlackOverlay: hideBlackOverlay
+        hideBlackOverlay: hideBlackOverlay,
+        createLoadingOverlay: createLoadingOverlay,
+        hideLoadingOverlay: hideLoadingOverlay
     };
 })();
 
@@ -335,16 +401,19 @@ const eventBinding = (function() {
         const video = document.getElementById('cutsceneVideo');
         video.currentTime = 0;
 
-        // Play the video
-        video.play();
-
         // Hide decision UI and reset any necessary flags or states
         uiControl.hideDecisionUI();
+        uiControl.hideBlackOverlay(); // Hide black overlay
+
         // Reset flags
         window.queenVoicePlayed = false;
         window.aliceVoicePlayed = false;
-        window.videoFirstPause = false;
+        window.audioPlaying = false;
+
+        // Play the video
+        video.play();
     }
+
 
 
     return {
