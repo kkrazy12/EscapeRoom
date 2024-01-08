@@ -27,6 +27,11 @@ const videoControl = (function() {
         const startButton = document.getElementById('startButton');
         startButton.addEventListener('click', () => playVideo());
         video.ontimeupdate = () => onVideoTime();
+
+        // Set initial mode of text tracks to "hidden"
+        if (video.textTracks.length > 0) {
+            video.textTracks[0].mode = 'hidden';
+        }
     }
 
     function playVideo(source) {
@@ -36,9 +41,12 @@ const videoControl = (function() {
         }
 
         uiControl.hideStartUI();
+        // Show the buttonContainer
+        document.querySelector('.buttonContainer').style.display = 'block';
 
-        // Start playing the video immediately
-
+        window.queenVoicePlayed = false;
+        window.aliceVoicePlayed = false;
+        window.audioPlaying = false;
 
         // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
@@ -127,8 +135,6 @@ const videoControl = (function() {
             console.log("Cannot play Alice's voice: Either an audio is already playing or Alice's voice has already been played");
         }
     }
-
-
 
     function onVideoTime() {
         console.log("Video currentTime:", video.currentTime);
@@ -255,11 +261,15 @@ const uiControl = (function() {
     // Show the decision UI elements
     function showDecisionUI() {
         document.getElementById('decisionUI').style.display = 'flex';
+        // Hide button container
+        document.querySelector('.buttonContainer').style.display = 'block';
     }
 
     // Hide decision UI elements
     function hideDecisionUI() {
         document.getElementById('decisionUI').style.display = 'none';
+        // Show button container
+        document.querySelector('.buttonContainer').style.display = 'block';
     }
 
     // Toggle display style of selected UI elements
@@ -362,6 +372,7 @@ const eventBinding = (function() {
         document.getElementById('yesButton').addEventListener('click', yesButton);
         document.getElementById('noButton').addEventListener('click', noButton);
         document.getElementById('replayButton').addEventListener('click', replayButton);
+        document.getElementById('captionsButton').addEventListener('click', toggleCaptions);
     }
 
     function yesButton() {
@@ -408,18 +419,33 @@ const eventBinding = (function() {
 
         // Hide decision UI and reset any necessary flags or states
         uiControl.hideDecisionUI();
-        uiControl.hideBlackOverlay(); // Hide black overlay
+        uiControl.hideBlackOverlay();
+
+        // Show the buttonContainer
+        document.querySelector('.buttonContainer').style.display = 'block';
 
         // Reset flags
         window.queenVoicePlayed = false;
         window.aliceVoicePlayed = false;
         window.audioPlaying = false;
+        window.videoFirstPause = false; // Add this line to reset the flag
 
         // Play the video
         video.play();
     }
 
-
+    function toggleCaptions() {
+        let video = document.getElementById('cutsceneVideo');
+        if (video.textTracks.length > 0) {
+            if (video.textTracks[0].mode === "hidden") {
+                video.textTracks[0].mode = "showing";
+            } else {
+                video.textTracks[0].mode = "hidden";
+            }
+        } else {
+            console.error("No text tracks available for this video.");
+        }
+    }
 
     return {
         init: addButtonListeners
@@ -496,4 +522,8 @@ document.addEventListener('DOMContentLoaded', () => {
     videoControl.load();
     // Display player inputs
     playerInputControl.displayPlayerInputs();
+    // Reset flags
+    window.queenVoicePlayed = false;
+    window.aliceVoicePlayed = false;
+    window.audioPlaying = false;
 });
