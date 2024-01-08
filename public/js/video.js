@@ -37,7 +37,7 @@ const videoControl = (function() {
         uiControl.hideStartUI();
 
         // Start playing the video immediately
-        video.play();
+        
 
         // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
@@ -51,7 +51,11 @@ const videoControl = (function() {
         Promise.all([
             aiDialogue.preloadVoice('Queen of Hearts', queenDialogue, './audio/queenBackup.mp3'),
             aiDialogue.preloadVoice('Alice', aliceDialogue, './audio/aliceBackup.mp3')
-        ]).catch(error => {
+        ])
+        .then(() => {
+            video.play();
+        })
+        .catch(error => {
             console.error('Error preloading voices:', error);
         });
     }
