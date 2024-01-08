@@ -19,16 +19,20 @@ var vObj = {
     mp3Sequences: {
         // Mapping of number sequences to audio file paths
         // Each sequence is associated with a specific audio file
-        '1234567890': './audio/directoryAudio/0001.mp3', 
-        '2222222222': './audio/directoryAudio/0002.wav',  
-        '3333333333': './audio/directoryAudio/0003.wav',  
-        '4444444444': './audio/directoryAudio/0004.wav',  
-        '5555555555': './audio/directoryAudio/0005.wav',  
-        '6666666666': './audio/directoryAudio/0006.wav',  
-        '7777777777': './audio/directoryAudio/0007.wav',  
-        '8888888888': './audio/directoryAudio/0008.mp3', 
-        '9999999999': './audio/directoryAudio/1009.mp3',  
-        '1111111111': './audio/directoryAudio/0010.mp3'
+        '0121239212': './audio/directoryAudio/cheshireCatChess.mp3', //Cheshire Cat
+        '0121238312': './audio/directoryAudio/0002.wav',  //Alice
+        '0121237214': './audio/directoryAudio/0003.wav',  //White Rabbit
+        '0121253212': './audio/directoryAudio/0004.wav',  //Mad Hatter
+        '0121117212': './audio/directoryAudio/0005.wav',  //Queen of Hearts
+        '0121660212': './audio/directoryAudio/0006.wav',  //Caterpillar
+        '0121234512': './audio/directoryAudio/0007.wav',  //Door Knob
+        '0121231112': './audio/directoryAudio/0008.mp3',  //Singing Flowers
+        '0121239989': './audio/directoryAudio/1009.mp3',  //Tweedledee & Tweedledum
+        '0121232231': './audio/directoryAudio/0010.mp3',  //Rose
+        // '0121112111': './audio/directoryAudio/0010.mp3',  //King of Hearts
+        // '10121253215': './audio/directoryAudio/0010.mp3',  //March Hare
+
+
     },
 
      // Method to hide the 'End Call' button
@@ -47,30 +51,41 @@ var vObj = {
         }
     },
 
-    // Method to handle call actions when a number sequence is dialed
-    call: function() {
-        if (this.numCount == 10) {
-            var dialedNumber = this.numArr.join('');
-            if (dialedNumber in this.mp3Sequences) {
-                if (this.currentAudio && !this.currentAudio.paused) {
-                    this.currentAudio.pause();
-                    this.currentAudio.currentTime = 0;
-                }
-                this.currentAudio = new Audio(this.mp3Sequences[dialedNumber]);
-                this.currentAudio.play();
-                this.title.innerHTML = "End Call";
-                this.currentAudio.onended = () => {
-                    this.title.innerHTML = "Ready to Dial";
-                };
-                this.showEndCallButton();
-            } else {
-                this.title.innerHTML = "Please<br>dial 10 digits";
-                setTimeout(() => {
-                    this.title.innerHTML = "Press<br>Numbers";
-                }, 3000);
+// Function to play incorrect number audio
+playIncorrectNumberAudio: function() {
+    if (this.currentAudio && !this.currentAudio.paused) {
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+    }
+    this.currentAudio = new Audio('./audio/directoryAudio/incorrectNum.wav');
+    this.currentAudio.play();
+    this.title.innerHTML = "Incorrect Number";
+    this.currentAudio.onended = () => {
+        this.title.innerHTML = "Ready to Dial";
+        this.clearFun();
+    };
+},
+
+// Method to handle call actions when a number sequence is dialed
+call: function() {
+    if (this.numCount == 10) {
+        var dialedNumber = this.numArr.join('');
+        if (dialedNumber in this.mp3Sequences) {
+            if (this.currentAudio && !this.currentAudio.paused) {
+                this.currentAudio.pause();
+                this.currentAudio.currentTime = 0;
             }
+            this.currentAudio = new Audio(this.mp3Sequences[dialedNumber]);
+            this.currentAudio.play();
+            this.title.innerHTML = "End Call";
+            this.currentAudio.onended = () => {
+                this.title.innerHTML = "Ready to Dial";
+            };
+        } else {
+            this.playIncorrectNumberAudio();
         }
-    },
+    }
+},
   // Method to handle the hang-up action and stop the audio
     hangUp: function() {
         if (this.currentAudio) {
@@ -82,18 +97,28 @@ var vObj = {
         this.title.innerHTML = "Ready to Dial";
         this.hideEndCallButton();
     },
-// Method to clear dialed numbers and reset the interface
-    clearFun: function() {
-        this.numArr = [];
-        this.link.setAttribute('href', '#');
-        this.numCount = 0;
-        this.title.innerHTML = "Press<br>Numbers";
-        for (let i = 0; i < this.nums.length; i++) {
-            this.nums[i].classList.add('disNon');
-            this.nums[i].classList.remove('rAFade');
-            this.nums[i].innerHTML = "";
-        }
-    },
+// Method to clear dialed numbers, reset the interface, and stop any playing audio
+clearFun: function() {
+    // Stop and reset the current audio if it's playing
+    if (this.currentAudio && !this.currentAudio.paused) {
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+        this.currentAudio = null;
+    }
+
+    // Clear dialed numbers and reset number count
+    this.numArr = [];
+    this.numCount = 0;
+
+    // Reset the display
+    this.title.innerHTML = "Press<br>Numbers";
+    for (let i = 0; i < this.nums.length; i++) {
+        this.nums[i].classList.add('disNon');
+        this.nums[i].classList.remove('rAFade');
+        this.nums[i].innerHTML = "";
+    }
+},
+
 // Utility method to remove specific classes from elements
     prune: function(list, tExp) {
         for (let p = 0; p < list.length; p++) {
