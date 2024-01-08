@@ -37,8 +37,9 @@ const videoControl = (function() {
 
         uiControl.hideStartUI();
 
-        // Start playing the video immediately
-
+        window.queenVoicePlayed = false;
+        window.aliceVoicePlayed = false;
+        window.audioPlaying = false;
 
         // Retrieve player count and names
         const playerCount = localStorage.getItem('playerCount') || 0;
@@ -408,12 +409,13 @@ const eventBinding = (function() {
 
         // Hide decision UI and reset any necessary flags or states
         uiControl.hideDecisionUI();
-        uiControl.hideBlackOverlay(); // Hide black overlay
+        uiControl.hideBlackOverlay();
 
         // Reset flags
         window.queenVoicePlayed = false;
         window.aliceVoicePlayed = false;
         window.audioPlaying = false;
+        window.videoFirstPause = false; // Add this line to reset the flag
 
         // Play the video
         video.play();
@@ -496,4 +498,8 @@ document.addEventListener('DOMContentLoaded', () => {
     videoControl.load();
     // Display player inputs
     playerInputControl.displayPlayerInputs();
+    // Reset flags
+    window.queenVoicePlayed = false;
+    window.aliceVoicePlayed = false;
+    window.audioPlaying = false;
 });
