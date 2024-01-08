@@ -122,13 +122,14 @@ p {
     color: #333;
 }
 
-/*h1 {
+h1 {
     text-align: center;
     font-weight: bold;
     font-size: 22px;
     font-family: 'Fira Mono', monospace;
     margin-top: 15px;
-}*/
+    color: #000;
+}
 
 header {
     text-align: center;
