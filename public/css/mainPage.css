@@ -65,7 +65,7 @@ font-size: 40px;
     width: 100%;
 }
 
-.backup-puzzles button:hover {
+.backup-puzzles button:hover, .backup-puzzles a:hover {
     color: #00ffbf;
     text-shadow: -2px 0px 12px #09ed6c;
     background-color: black;
@@ -77,6 +77,11 @@ font-size: 40px;
     border: white solid 3px;
     border-radius: 15px;
     width: 150px;
+    height: 140px;
+}
+.backup-puzzles a {
+    flex: 0;
+    flex-basis: 130px;
     height: 140px;
 }
 
@@ -134,3 +139,28 @@ font-size: 40px;
     transform-origin: left;
     transition: transform 0.1s, color 0.1s;
 }
+
+.modal-content {
+    font-family: fantasy;
+    font-size: 25px;
+    text-align: center;
+}
+
+    .modal-header{
+        justify-content: center;
+    }
+
+    .modal-title{
+        font-size: 35px;
+    }
+
+    .modal-btn{
+        background-color: darkred;
+        color: #00ffbf;
+        border: darkred solid 5px;
+        border-radius: 15px;
+    }
+
+    .modal-footer{
+        justify-content: center;
+    }
