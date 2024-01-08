@@ -102,10 +102,21 @@ const videoControl = (function() {
                 // Play the Alice audio
                 aliceAudio.play();
 
-                // When the Alice audio ends, reset the audio playing flag
+                // When the Alice audio ends, initiate a timer to pause the video
                 aliceAudio.onended = () => {
                     console.log("Alice's voice playback ended");
                     window.audioPlaying = false;
+
+                    // Pause the video 5 seconds after Alice's audio ends
+                    setTimeout(() => {
+                        if (!video.paused && !window.videoFirstPause) {
+                            const video = document.getElementById('cutsceneVideo');
+                            video.pause();
+                            uiControl.showBlackOverlay();
+                            uiControl.showDecisionUI();
+                            window.videoFirstPause = true;
+                        }
+                    }, 5000); // 5-second delay
                 };
             }, 4000); // 4-second delay to ensure separation from previous audio
 
@@ -118,19 +129,13 @@ const videoControl = (function() {
     }
 
 
+
     function onVideoTime() {
         console.log("Video currentTime:", video.currentTime);
         if (video.currentTime >= QUEEN_SCENE_TIME && !window.queenVoicePlayed) {
             console.log("Triggering Queen's voice");
             window.queenVoicePlayed = true;
             playQueenVoice();
-        }
-
-        if (video.currentTime >= 87 && !video.paused && !window.videoFirstPause) {
-            video.pause();
-            uiControl.showBlackOverlay();
-            uiControl.showDecisionUI();
-            window.videoFirstPause = true; // Set flag to true after pausing
         }
     }
 
