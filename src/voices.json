@@ -8,8 +8,8 @@
         },
         "Mad Hatter": { 
             "voiceId": "iZB49K1wCuvAt8IC3y3Y",
-            "stability": 0.5,
-            "similarityBoost": 0.5,
+            "stability": 0.2,
+            "similarityBoost": 0.7,
             "style": 1
         },
         "White Rabbit": { 
