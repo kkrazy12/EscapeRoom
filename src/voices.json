@@ -14,7 +14,7 @@
         },
         "White Rabbit": { 
             "voiceId": "93WD1zZl7ByACS47Fs6I",
-            "stability": 0.5,
+            "stability": 0.4,
             "similarityBoost": 0.8,
             "style": 1
         },
