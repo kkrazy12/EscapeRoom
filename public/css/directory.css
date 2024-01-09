@@ -40,6 +40,34 @@ main::before {
     background-attachment: fixed;
     z-index: -1;
 }
+.mainBtns {
+    display:block;
+    justify-content: center;
+    margin-left: 40%;
+    margin-top:50px;
+}
+.navButton {
+  
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    display: inline-block; 
+    text-align: center;
+    transition: 1s;
+    color: #00CC99;
+  }
+  
+  .navButton:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
+  }
 
 .cardsGrouped {
     display: flex;

@@ -22,13 +22,14 @@
     <!-- Specific UI elements will be detailed in the accompanying JavaScript and CSS files -->
 <body>
     <!-- Page content -->
-    
+    <div class="mainBtns">
+      
+      <button class="navButton" onclick="vObj.clearFun()">Hang Up</button>
+      <a href="mainPage.html" id="previousButton" class="navButton"> 
+        <i class="fa-solid fa-arrow-left"></i> Go back
+      </a>
+  </div>
     <div class="outerDiv"> 
-      <button class="end-call-button" onclick="vObj.hangUp()" style="display: none;">End Call</button>
-      <button class="clear back1" onclick="vObj.clearFun()">Hang Up</button>
-     
-
-    
     <div class="numCon"><a id="phoneLink"></a></div>
     <div class="numCon" onclick="vObj.call()">
       <button class="btnNum btnNum2 disNon bt0"></button>
@@ -118,6 +119,11 @@
       <div class="dialInn back1" onclick="vObj.call()"><h1 id="title">Click<br>Calls</h1> </div>
     </div>
     </div>
+    <div class="mainBtns">
+    
+
+  </div>
+  
     
     
     <!-- ... -->

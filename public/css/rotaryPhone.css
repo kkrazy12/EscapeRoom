@@ -37,10 +37,52 @@ body {
   button {
     outline: none; /* Remove blue outline in Chrome */
   }
+  .mainBtns {
+    display:block;
+    justify-content: center;
+    margin-left: 40%;
+    margin-top:50px;
+}
+.navButton {
+  
+  padding: 15px 30px;
+  font-size: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  border-radius: 3px;
+  border: 1px solid grey;
+  font-family: 'Alagard', Courier, monospace;
+  display: inline-block; 
+  text-align: center;
+  transition: 1s;
+  color: #00CC99;
+}
+
+.navButton:hover {
+  background-color: #00ffbba1; 
+  color: #FFF;
+}
   
 /* Styles for the clear button, positioning it within the interface */
   .clear {
-    position: absolute;
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 0 0px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    display: inline-block; 
+    text-align: center;
+    transition: 1s;
+    color: #00CC99;
+    /* position: absolute;
     top: 10px;
     left: 10px;
     border-radius: 35px;
@@ -48,8 +90,12 @@ body {
     color: #a6a6a6;
     font-size: 1.1em;
     width: 150px;
-    height: 70px;
+    height: 70px; */
   }
+  .clear:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
+}
   .end-call-button {
     position: relative;
     top:200px;
@@ -70,7 +116,7 @@ body {
   /* contains numbers that pop up*/
   .numCon {
     position: absolute;
-    top: 0px;
+    top: 130%;
     left: calc(50% - 310px);
     height: 70px;
     width: 620px;
