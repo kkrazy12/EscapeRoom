@@ -23,11 +23,11 @@ var vObj = {
         '0121238312': './audio/directoryAudio/0002.wav',  //Alice
         '0121237214': './audio/directoryAudio/whiteRabbit.mp3',  //White Rabbit
         '0121253212': './audio/directoryAudio/0004.wav',  //Mad Hatter
-        '0121117212': './audio/directoryAudio/0005.wav',  //Queen of Hearts
-        '0121660212': './audio/directoryAudio/0006.wav',  //Caterpillar
-        '0121234512': './audio/directoryAudio/0007.wav',  //Door Knob
+        '0121117212': './audio/directoryAudio/queenofHearts.mp3',  //Queen of Hearts
+        '0121660212': './audio/directoryAudio/caterpillar.mp3',  //Caterpillar
+        '0121234512': './audio/directoryAudio/doorknob.mp3',  //Door Knob
         '0121231112': './audio/directoryAudio/0008.mp3',  //Singing Flowers
-        '0121239989': './audio/directoryAudio/1009.mp3',  //Tweedledee & Tweedledum
+        '0121239989': './audio/directoryAudio/tweedledee.mp3',  //Tweedledee & Tweedledum
         '0121232231': './audio/directoryAudio/0010.mp3',  //Rose
         '0121112111': './audio/directoryAudio/kingofHearts.mp3',  //King of Hearts
         '10121253215': './audio/directoryAudio/marchHare.mp3',  //March Hare

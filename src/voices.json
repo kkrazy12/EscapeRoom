@@ -26,8 +26,8 @@
         },
         "March Hare": {
             "voiceId": "6TsiNB9ZGRvtjDSzWb2P",
-            "stability": 0.3,
-            "similarityBoost": 0.7,
+            "stability": 0.2,
+            "similarityBoost": 0.8,
             "style": 1
         },
         "Caterpillar": {
