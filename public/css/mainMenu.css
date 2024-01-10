@@ -18,6 +18,7 @@ body, html {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+    overflow: hidden;
 }
 
 /* Background image */
@@ -25,6 +26,7 @@ main {
     height: 100%;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 main::before {
     content: '';
