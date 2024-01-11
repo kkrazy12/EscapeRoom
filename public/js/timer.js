@@ -8,29 +8,32 @@ const display = get(".timer .display");
 const progress = get(".timer .progress");
 const WARN_THRESHOLD = 0.4;
 const DANGER_THRESHOLD = 0.2;
-const TARGET_TIME = new Date().getTime() + .1 * 60 * 1000; // Current time + 15 minutes in milliseconds
+const TARGET_TIME = new Date().getTime() + 20 * 60 * 1000; // Current time + 20 minutes in milliseconds
 
-// Function to update the timer display, progress bar, and color
+
+/// Function to update the timer display, progress bar, and color
 function updateTimerDisplay() {
   // Convert milliseconds to seconds and calculate minutes and seconds
   var storedTargetTime = sessionStorage.getItem(sessionTargetTime);
   var currentTime = new Date().getTime();
-  console.log(storedTargetTime);
   const remainingSeconds = Math.floor((storedTargetTime - currentTime) / 1000);
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
-  console.log(currentTime >= storedTargetTime)
-  if (seconds < 1) {
+
+  if (remainingSeconds <= 0) {
     sessionStorage.setItem("stop", true);
     clearInterval(interval);
-    sessionStorage.setItem("target_time", new Date().getTime() + .1 * 60 * 1000)
-
+    sessionStorage.setItem(sessionTargetTime, new Date().getTime() + 0.1 * 60 * 1000);
   }
+
   // Update the display with the formatted time (MM:SS)
   display.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-  progress.style.setProperty("--progress", remainingSeconds);
+  // Calculate progress percentage
+  const progressPercentage = (remainingSeconds / (0.1 * 60)) * 100;
 
+  // Update the progress bar with the calculated percentage
+  progress.style.setProperty("--progress", progressPercentage + "%");
 
   if (remainingSeconds > WARN_THRESHOLD) {
     progress.style.setProperty("--color", "var(--safe)");
@@ -40,6 +43,7 @@ function updateTimerDisplay() {
     progress.style.setProperty("--color", "var(--danger)");
   }
 }
+
 
 // Function to handle the countdown
 function startCountdown() {
@@ -59,11 +63,10 @@ function startCountdown() {
 
 startCountdown();
 
-// Function to reset the game and navigate back to index.html
 function resetGame() {
   // Remove the timer state from sessionStorage
   sessionStorage.removeItem("timeRemaining");
-
+  sessionStorage.setItem(sessionTargetTime, new Date().getTime() + 0.1 * 60 * 1000);
   window.location.href = 'index.html';
 }
 
