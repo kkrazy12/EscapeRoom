@@ -1,30 +1,40 @@
-// Function to get an element using a query selector
+// Get an element using a query selector
 const get = query => document.querySelector(query);
 
 // Get references to the display and progress elements
+var interval;
+const sessionTargetTime = "target_time";
 const display = get(".timer .display");
 const progress = get(".timer .progress");
 const WARN_THRESHOLD = 0.4;
 const DANGER_THRESHOLD = 0.2;
-const TARGET_TIME = new Date().getTime() + 15 * 60 * 1000; // Current time + 15 minutes in milliseconds
+const TARGET_TIME = new Date().getTime() + .1 * 60 * 1000; // Current time + 15 minutes in milliseconds
 
 // Function to update the timer display, progress bar, and color
-function updateTimerDisplay(newProgress) {
-  //Convert ms to s and calculate minutes and seconds
-  const remainingSeconds = Math.floor((TARGET_TIME - new Date().getTime()) / 1000);
+function updateTimerDisplay() {
+  // Convert milliseconds to seconds and calculate minutes and seconds
+  var storedTargetTime = sessionStorage.getItem(sessionTargetTime);
+  var currentTime = new Date().getTime();
+  console.log(storedTargetTime);
+  const remainingSeconds = Math.floor((storedTargetTime - currentTime) / 1000);
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
+  console.log(currentTime >= storedTargetTime)
+  if (seconds < 1) {
+    sessionStorage.setItem("stop", true);
+    clearInterval(interval);
+    sessionStorage.setItem("target_time", new Date().getTime() + .1 * 60 * 1000)
 
-  //Update the display with the formatted time (MM:SS)
+  }
+  // Update the display with the formatted time (MM:SS)
   display.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-  //det the CSS variable --progress to update the progress bar width
-  progress.style.setProperty("--progress", newProgress);
+  progress.style.setProperty("--progress", remainingSeconds);
 
-  //colours of the progress bar based on the new progress value
-  if (newProgress > WARN_THRESHOLD) {
+
+  if (remainingSeconds > WARN_THRESHOLD) {
     progress.style.setProperty("--color", "var(--safe)");
-  } else if (newProgress > DANGER_THRESHOLD) {
+  } else if (remainingSeconds > DANGER_THRESHOLD) {
     progress.style.setProperty("--color", "var(--warn)");
   } else {
     progress.style.setProperty("--color", "var(--danger)");
@@ -33,18 +43,21 @@ function updateTimerDisplay(newProgress) {
 
 // Function to handle the countdown
 function startCountdown() {
-  setInterval(() => {
-    const newProgress = (TARGET_TIME - new Date().getTime()) / (15 * 60 * 1000);
-    updateTimerDisplay(newProgress);
+  // store in session target time if not exists
+  var storedtime = sessionStorage.getItem(sessionTargetTime)
+  if (!storedtime) {
+    sessionStorage.setItem(sessionTargetTime, TARGET_TIME)
+  }
+  //if (sessionStorage.getItem(stop) === true) return;
+  interval = setInterval(() => {
+    //const newProgress = (TARGET_TIME - new Date().getTime()) / (15 * 60 * 1000);
+    updateTimerDisplay();
   }, 1000);
+
+
 }
 
 startCountdown();
-
-
-
-
-
 
 // Function to reset the game and navigate back to index.html
 function resetGame() {

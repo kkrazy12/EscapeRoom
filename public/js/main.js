@@ -78,3 +78,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// JavaScript to load HTML content into the iframe
+$(document).ready(function () {
+    $('#plantModal').on('show.modal', function (event) {
+      // Set the URL or content you want to load into the iframe
+      var iframeUrl = '~/Desktop/EscapeRoom/public/rotaryPhone.html';
+     
+  
+      // Set the iframe source
+      $('#iframeContent').attr('src', iframeUrl);
+      // $('#iframeContent').contents().find('html').html(iframeContent);
+    });
+  });
+  
