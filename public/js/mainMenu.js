@@ -68,3 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('mouseover', playHoverSound);
     });
 });
+
+// IMPORTANT: Resetting Mad Hatter's audio flag 
+localStorage.removeItem('madHatterCalled');
