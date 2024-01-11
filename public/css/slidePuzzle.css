@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
 #canvas{
     height: 400px;
     width: 400px;
-    background-color: red;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -10,11 +18,16 @@
 #canvas img {
     width: 118px;
     height: 118px;
-    border: 1px solid #0c67ae;
 }
 
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(../img/background.png);
+}
+
+h1{
+    font-family: 'Chickweed';
+    color: white;
 }

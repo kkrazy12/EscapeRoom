@@ -1,46 +1,100 @@
-let source; //image source
-let tiles = []; //Initializes an empty array to store individual puzzle piece tiles
-let cols = 3; //Defines the number of columns in the puzzle grid
-let rows = 3; //Defines the number of rows in the puzzle grid
-let w, h; //Declares variables to represent the width and height of each puzzle piece
+let source; // image source
+let tiles = []; // Initializes an empty array to store individual puzzle piece tiles
+let cols = 3; // Defines the number of columns in the puzzle grid
+let rows = 3; // Defines the number of rows in the puzzle grid
+let w, h; // Declares variables to represent the width and height of each puzzle piece
 let board = [];
 
-function preload() {
-  source = loadImage("./img/alice5.png"); //preloading the image before the canvas so that the user never has only a blank canvas with no image. If it takes it's time to load they will end up loading in together rather than one at a time
+
+function countInversions(arr) {
+  let invCount = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] !== -1 && arr[j] !== -1 && arr[i] > arr[j]) {
+        invCount++;
+      }
+    }
+  }
+  return invCount;
 }
 
+function preload() {
+  source = loadImage("./img/alice5.png"); // Preloading the image before the canvas so that the user never has only a blank canvas with no image. If it takes its time to load, they will end up loading in together rather than one at a time
+}
+
+
 function setup() {
-  createCanvas(400, 400); //creating my canvas 400px x 400px
-  w = width / cols; //The width and height of each puzzle piece (w and h) are calculated based on the canvas dimensions and the number of columns and rows
+  createCanvas(400, 400); // Creating my canvas 400px x 400px
+  w = width / cols; // The width and height of each puzzle piece (w and h) are calculated based on the canvas dimensions and the number of columns and rows
   h = height / rows;
-  initialiseTiles(); //calling my functions in the setup
+  initialiseTiles(); 
   shuffleBoard();
+  console.log("Is solvable:", isSolvable());
 }
 
 function initialiseTiles() {
+  tiles = [];
+  board = [];
   for (let c = 0; c < cols; c++) {
     for (let r = 0; r < rows; r++) {
       const x = c * w;
       const y = r * h;
       const img = createGraphics(w, h); // For each grid position, a tile image is created using createGraphics(w, h) to make an off-screen graphics buffer of the same size as a puzzle piece
-      img.image(source, 0, 0, w, h, x, y, w, h); // copies a portion of the source image onto the tile image.
+      img.image(source, 0, 0, w, h, x, y, w, h); // Copies a portion of the source image onto the tile image.
       const index = c + r * cols;
       board.push(index);
-      tiles.push(new Tile(index, img)); // a Tile object is created and added to the tiles array. The index variable is pushed onto the board array to represent the initial order of the tiles.
+      tiles.push(new Tile(index, img)); // A tile object is created and added to the tiles array. The index variable is pushed onto the board array to represent the initial order of the tiles.
     }
   }
   tiles.pop();
   board.pop();
-  board.push(-1); // the last tile and index are removed, and an empty spot is represented by 1 in the board.
+  board.push(-1); //the last tile and index are removed, and an empty spot is represented by 1 in the board.
 }
 
-function shuffleBoard() { // the Shuffle function is used to shuffle the order of the puzzle pieces in the board array.
-  let m = board.length; // m represents the number of puzzle pieces in the game.
-  while (m) {
-    const i = Math.floor(Math.random() * m--); // i is generated using Math.random(), which returns a random number between 0 and 1. Multiplying it by m-- scales the random number to be within the range [0, m), where m is the current number of remaining puzzle pieces. Math.floor() rounds the result down to the nearest integer, making it suitable as an array index
-    [board[m], board[i]] = [board[i], board[m]];// performs the actual swap of the two puzzle pieces within the board array.
+function shuffleBoard() {
+  // Reset to the solved state
+  initialiseTiles();
+
+  // Perform a series of valid moves to shuffle the puzzle
+  do {
+    for (let i = 0; i < 1000; i++) {
+      // Choose a random valid move
+      let validMoves = getValidMoves();
+      let randomMove = random(validMoves);
+      move(randomMove[0], randomMove[1], board);
+    }
+  } while (!isSolvable());
+}
+
+function isSolvable() {
+  let invCount = countInversions(board);
+  let puzzleSize = cols * rows;
+  if (puzzleSize % 2 === 0) {
+    // Puzzle size is even
+    return invCount % 2 === 0;
+  } else {
+    // Puzzle size is odd
+    let blankRowFromBottom = rows - Math.floor(board.indexOf(-1) / cols);
+    return (invCount + blankRowFromBottom) % 2 === 0;
   }
 }
+
+
+function getValidMoves() {
+  let blank = findBlank();
+  let blankCol = blank % cols;
+  let blankRow = floor(blank / rows);
+  let validMoves = [];
+
+  // Check neighbouring positions
+  if (blankCol > 0) validMoves.push([blankCol - 1, blankRow]); //left
+  if (blankCol < cols - 1) validMoves.push([blankCol + 1, blankRow]); //right
+  if (blankRow > 0) validMoves.push([blankCol, blankRow - 1]); //up
+  if (blankRow < rows - 1) validMoves.push([blankCol, blankRow + 1]); //down
+
+  return validMoves;
+}
+
 
 function swap(c, r, arr) {
     [arr[c], arr[r]] = [arr[r], arr[c]];
@@ -134,3 +188,8 @@ function move(i, j, arr) {
       if (board[i] == -1) return i;
     }
   }
+
+
+
+
+  
