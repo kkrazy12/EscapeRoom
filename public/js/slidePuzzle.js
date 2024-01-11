@@ -4,6 +4,7 @@ let cols = 3; // Defines the number of columns in the puzzle grid
 let rows = 3; // Defines the number of rows in the puzzle grid
 let w, h; // Declares variables to represent the width and height of each puzzle piece
 let board = [];
+let modalShown = false;
 
 
 function countInversions(arr) {
@@ -79,6 +80,14 @@ function isSolvable() {
   }
 }
 
+function resetPuzzle() {
+  $('#puzzleComplete').modal('hide');
+  modalShown = false;
+//Hide the modal and reset the puzzle once closed
+  shuffleBoard();
+}
+
+
 
 function getValidMoves() {
   let blank = findBlank();
@@ -120,8 +129,10 @@ function draw() {
   background(0); //In the draw() function, the canvas is cleared (background(0)) to prepare for redrawing the puzzle.
   drawBoard(); //The current state of the puzzle is drawn based on the board array. The tiles are arranged according to the current order in the board array.
   drawGrid(); //The puzzle pieces are drawn as images, and a grid overlay is added to tell the pieces apart.
-  if (isSolved()) { //console log 'solved' if the pieces are in the correct order
-    console.log("SOLVED");
+  if (isSolved() && !modalShown) {
+    //show the modal
+    $('#puzzleComplete').modal('show');
+    modalShown = true;
   }
 }
 
