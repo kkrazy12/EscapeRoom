@@ -3,16 +3,16 @@ const get = query => document.querySelector(query);
 
 // Get references to the display and progress elements
 var interval;
+const DURATION = 20 * 60 * 1000;
 const sessionTargetTime = "target_time";
 const display = get(".timer .display");
 const progress = get(".timer .progress");
-const WARN_THRESHOLD = 0.4;
-const DANGER_THRESHOLD = 0.2;
-const TARGET_TIME = new Date().getTime() + 20 * 60 * 1000; // Current time + 20 minutes in milliseconds
+const WARN_THRESHOLD = 10 * 60;
+const DANGER_THRESHOLD = 5 * 60;
+const TARGET_TIME = new Date().getTime() + DURATION; // Current time + 15 minutes in milliseconds
 
-
-/// Function to update the timer display, progress bar, and color
-function updateTimerDisplay() {
+// Function to update the timer display, progress bar, and color
+function updateTimerDisplay(callback) {
   // Convert milliseconds to seconds and calculate minutes and seconds
   var storedTargetTime = sessionStorage.getItem(sessionTargetTime);
   var currentTime = new Date().getTime();
@@ -23,14 +23,15 @@ function updateTimerDisplay() {
   if (remainingSeconds <= 0) {
     sessionStorage.setItem("stop", true);
     clearInterval(interval);
-    sessionStorage.setItem(sessionTargetTime, new Date().getTime() + 0.1 * 60 * 1000);
+    sessionStorage.setItem(sessionTargetTime, new Date().getTime() + DURATION);
+    callback();
   }
 
   // Update the display with the formatted time (MM:SS)
   display.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
   // Calculate progress percentage
-  const progressPercentage = (remainingSeconds / (0.1 * 60)) * 100;
+  const progressPercentage = (remainingSeconds / (DURATION / 1000)) * 100;
 
   // Update the progress bar with the calculated percentage
   progress.style.setProperty("--progress", progressPercentage + "%");
@@ -45,6 +46,7 @@ function updateTimerDisplay() {
 }
 
 
+
 // Function to handle the countdown
 function startCountdown() {
   // store in session target time if not exists
@@ -55,7 +57,9 @@ function startCountdown() {
   //if (sessionStorage.getItem(stop) === true) return;
   interval = setInterval(() => {
     //const newProgress = (TARGET_TIME - new Date().getTime()) / (15 * 60 * 1000);
-    updateTimerDisplay();
+    updateTimerDisplay(()=>{
+      $('#gameOverModal').modal('show');
+    });
   }, 1000);
 
 
@@ -66,15 +70,11 @@ startCountdown();
 function resetGame() {
   // Remove the timer state from sessionStorage
   sessionStorage.removeItem("timeRemaining");
-  sessionStorage.setItem(sessionTargetTime, new Date().getTime() + 0.1 * 60 * 1000);
+  sessionStorage.setItem(sessionTargetTime, TARGET_TIME + 0.1 * 60 * 1000);
   window.location.href = 'index.html';
 }
 
-// Visibility change event listener
-document.addEventListener('visibilitychange', () => {
-  // Update the visibility state when the page visibility changes
-  isPageVisible = document.visibilityState === 'visible';
-});
+
 
 // Enter four-digit code into the input field
 function checkPin() {
