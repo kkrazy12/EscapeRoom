@@ -1,3 +1,5 @@
+/* CSS FOR THE MAIN MENU */
+
 /* Font import */
 @font-face {
     font-family: 'Chickweed';
@@ -15,9 +17,9 @@ body, html {
     background-color: black;
     color: #00CC99;
     font-family: 'Alagard', sans-serif;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     overflow: hidden;
 }
 
@@ -45,13 +47,14 @@ main::before {
     animation: hueRotateAnimation 8s infinite linear;
 }
 
+/* Hue rotate animation for the background image */
 @keyframes hueRotateAnimation {
     0%, 100% { filter: hue-rotate(0deg) saturate(1); }
     33% { filter: hue-rotate(90deg) saturate(1.5); } 
     66% { filter: hue-rotate(180deg) saturate(1.5); } 
 }
 
-
+/* Content container */
 .contentContainer {
     margin: 15px 100px;
     padding-top: 50px; 
@@ -106,7 +109,7 @@ nav a {
     text-decoration: none;
     transition: 0.5s;
     color: #00CC99;
-    margin-bottom: 10px; /* Adjust as needed */
+    margin-bottom: 10px;
 }
 nav a:hover {
     color: #00ffbf;
@@ -131,7 +134,6 @@ button#musicToggle:hover {
 }
 
 /* Responsive for mobile devices */
-/* Smaller text size for mobile devices */
 @media screen and (max-width: 768px) {
     .content-container {
         margin: 0 20px;

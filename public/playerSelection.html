@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Document metadata -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Enter Player Name | Cyber Wonderland</title>
         <link rel="stylesheet" href="css/main.css" id="mainStyles">
+
         <!-- Font Awesome stylesheet for icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <script src="https://kit.fontawesome.com/ea878f8687.js" crossorigin="anonymous"></script>
@@ -12,10 +14,14 @@
     <body>
         <main>
             <section>
+                <!-- Title -->
                 <header>
                     <h1>How many players?</h1>
                 </header>
+                <!-- Divider image -->
                 <img src="img/divider.png" alt="Divider Image" class="divider">
+
+                <!-- Player selection form -->
                 <form id="playerSelectionForm">
                     <div class="form-group">
                         <div id="playerCountButtons">
@@ -26,11 +32,12 @@
                             <button type="button" class="playerButton" data-count="5">5</button>
                             <button type="button" class="playerButton" data-count="6">6</button>
                         </div>
+                        <!-- Navigation buttons -->
                         <div class="navigation-buttons">
                             <a href="instructions.html">
-                                <button type="button">
-                                    <i class="fa-solid fa-arrow-left"></i> Go Back
-                                </button>
+                            <button type="button">
+                            <i class="fa-solid fa-arrow-left"></i> Go Back
+                            </button>
                             </a>
                             <button type="button" id="nextButton">Next
                             <i class="fa-solid fa-arrow-right"></i>
@@ -40,6 +47,7 @@
                 </form>
             </section>
         </main>
+        <!-- Javascript for funtionality -->
         <script src="./js/playerSelection.js"></script>
     </body>
 </html>

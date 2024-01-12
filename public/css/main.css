@@ -1,3 +1,7 @@
+/* MAIN CSS */
+/* This is the main css for many of the pages */
+/* Specifically the instructions page */
+
 /* Font import */
 @font-face {
     font-family: 'Chickweed';
@@ -40,6 +44,7 @@ main::before {
     z-index: -1;
 }
 
+/* Instruction cards */
 .cardsGrouped {
     display: flex;
     justify-content: center;
@@ -122,6 +127,7 @@ p {
     color: #333;
 }
 
+/* Heading styles */
 h1 {
     text-align: center;
     font-weight: bold;
@@ -214,6 +220,7 @@ button:hover {
 }
 
 /* Form styling */
+/* For player selection */
 form#playerSelectionForm {
     display: flex;
     flex-direction: column;
@@ -221,7 +228,6 @@ form#playerSelectionForm {
     width: 100%;
 }
 
-/* Style for form elements */
 form#playerSelectionForm > .form-group {
     margin: 10px 0; 
     width: 100%; 
@@ -230,7 +236,6 @@ form#playerSelectionForm > .form-group {
     align-items: center;
 }
 
-/* Style for labels and select box */
 form#playerSelectionForm label,
 form#playerSelectionForm select {
     margin-bottom: 10px;
@@ -238,7 +243,6 @@ form#playerSelectionForm select {
     text-align: center;
 }
 
-/* Style for the button */
 form#playerSelectionForm button {
     margin-top: 20px; 
 }
@@ -248,7 +252,6 @@ form#playerSelectionForm button {
     margin-bottom: 10px;
     display: block; 
 }
-
 
 /* Responsive adjustments for different screen sizes */
 @media screen and (max-width: 768px) {
@@ -271,6 +274,89 @@ form#playerSelectionForm button {
 }
 
 /* Responsive adjustments for mobile */
+
+/* Player count buttons */
+#playerCountButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.playerButton {
+    padding: 40px 60px;
+    font-size: 48px; 
+    margin: 15px;
+    flex: 0 0 25%; 
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    border: 2px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    transition: background-color 0.5s, transform 0.5s;
+}
+
+.playerButton:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
+}
+
+/* Divider */
+.divider {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.3; 
+}
+
+/* Selected button highlighted */
+.playerButton.selected {
+    background-color: #00ffbb80; 
+}
+
+/* Navigation buttons */
+.navButton {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    display: inline-block; 
+    text-align: center;
+    transition: 1s;
+    color: #00CC99;
+}
+
+.navButton:hover {
+    background-color: #00ffbba1; 
+    color: #FFF;
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .playerButton {
+        padding: 30px 40px;
+        font-size: 40px; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .playerButton {
+        padding: 20px 30px;
+        font-size: 32px; 
+        flex: 0 0 100%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .cardsGrouped {
         flex-direction: column;
@@ -292,81 +378,4 @@ form#playerSelectionForm button {
     #subtitle {
         font-size: 16px;
     }
-}
-
-#playerCountButtons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.playerButton {
-    padding: 40px 60px;
-    font-size: 48px; /* Significantly increased font size */
-    margin: 15px;
-    flex: 0 0 25%; /* Width of each button */
-    text-align: center;
-    cursor: pointer;
-    color: white;
-    background-color: black;
-    border-radius: 5px;
-    border: 2px solid grey;
-    font-family: 'Alagard', Courier, monospace;
-    transition: background-color 0.5s, transform 0.5s;
-}
-
-.playerButton:hover {
-    background-color: #00ffbba1; 
-    color: #FFF;
-}
-
-/* Responsive adjustments for smaller screens */
-@media screen and (max-width: 768px) {
-    .playerButton {
-        padding: 30px 40px;
-        font-size: 40px; /* Adjusted font size for medium screens */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .playerButton {
-        padding: 20px 30px;
-        font-size: 32px; /* Adjusted font size for small screens */
-        flex: 0 0 100%; /* Full width on very small screens */
-    }
-}
-
-.divider {
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0.3; 
-}
-
-.playerButton.selected {
-    background-color: #00ffbb80; 
-}
-
-.navButton {
-    padding: 15px 30px;
-    font-size: 20px;
-    margin: 0 10px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    background-color: black;
-    border-radius: 3px;
-    border: 1px solid grey;
-    font-family: 'Alagard', Courier, monospace;
-    display: inline-block; 
-    text-align: center;
-    transition: 1s;
-    color: #00CC99;
-}
-
-.navButton:hover {
-    background-color: #00ffbba1; 
-    color: #FFF;
 }

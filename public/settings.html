@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Settings | Cyber Wonderland</title>
     <link rel="stylesheet" type="text/css" href="./css/settings.css">
-
-    <!-- Font Awesome stylesheet for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://kit.fontawesome.com/ea878f8687.js" crossorigin="anonymous"></script>
 </head>
@@ -17,42 +15,27 @@
         <!-- Decorative divider image -->
         <img src="img/divider.png" class="divider" alt="Decorative Divider">
 
-        <!-- Instructional paragraph -->
-        <p>Use the below to generate a voice:</p>
+        <p>Settings for your escape room experience! We offer both fully-digital versions and hybrid.</p>
 
-        <!-- Dropdown for selecting voice character -->
-        <select id="voiceSelect" aria-label="Select a voice character">
-            <option value="Alice">Alice</option>
-            <option value="Mad Hatter">Mad Hatter</option>
-            <option value="White Rabbit">White Rabbit</option>
-            <option value="Queen of Hearts">Queen of Hearts</option>
-            <option value="March Hare">March Hare</option>
-            <option value="Caterpillar">Caterpillar</option>
-            <option value="Tweedledum">Tweedledum</option>
-            <option value="Cheshire Cat">Cheshire Cat</option>
-            <option value="Doorknob">Doorknob</option>
-            <option value="King of Hearts">King of Hearts</option>
-        </select>
-
-        <!-- Textarea for inputting text to be spoken -->
-        <textarea id="textInput" rows="4" placeholder="Enter text here..." aria-label="Text to speak"></textarea>
+        <!-- Settings Table -->
+        <table class="settings-table">
+            <tr>
+                <td>Digital Phone</td>
+                <td><input type="checkbox" id="phoneBackupToggle" checked disabled /></td>
+            </tr>            
+            <tr>
+                <td>Digital Plant</td>
+                <td><input type="checkbox" id="phoneBackupToggle" /></td>
+            </tr>
+        </table>
 
         <!-- Row for buttons -->
         <div class="buttonRow">
             <!-- Navigation button to go back -->
             <a href="index.html" class="navButton">
-                <i class="fa-solid fa-arrow-left"></i>
-                Back</a>
-            
-            <!-- Button to trigger voice generation -->
-            <button id="generateButton">Generate Voice</button>
-        </div>        
-
-        <!-- Audio player, initially hidden -->
-        <audio id="audioPlayer" controls aria-label="Voice output"></audio>
-
-        <!-- Loading indicator, initially hidden -->
-        <div id="loadingIndicator">Loading...</div>
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+        </div>
     </main>
     <script src="./js/aiVoices.js"></script>
 </body>

@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5502
+    "liveServer.settings.port": 5502,
+    "appService.defaultWebAppToDeploy": "/subscriptions/22ccfe00-5693-4bed-9452-316270989024/resourceGroups/techscape/providers/Microsoft.Web/sites/cyberwonderland",
+    "appService.deploySubpath": "."
 }

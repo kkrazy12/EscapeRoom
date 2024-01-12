@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/mainPage.css">
-</head>
-
-<body>
-
-    <!--Timer here-->
-    <div class="timer-container">
-        <div class="timer">
-            <div class="display"></div>
-            <div class="progress-container">
-                <div class="progress"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/mainPage.css">
+    </head>
+    <body>
+        <!--Timer here-->
+        <div class="timer-container">
+            <div class="timer">
+                <div class="display"></div>
+                <div class="progress-container">
+                    <div class="progress"></div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!--Main button links to separate pages-->
-    <div class="main-btns">
-        <a class="links fa fa-puzzle-piece" href="slidePuzzle.html">
-            <span class="btn-names">Slide Puzzle</span>
+        <!-- Main button links to separate pages -->
+        <div class="main-btns">
+            <!-- Slide Puzzle Button -->
+            <a class="links fa fa-puzzle-piece" href="slidePuzzle.html">
+            <span class="btn-names"> Slide Puzzle</span>
+            </a>
+            <!-- Phone Directory Button -->
+            <a class="links fa fa-address-book-o" href="directory.html">
+            <span class="btn-names"> Phone Directory</span>
+            </a>
+            <!-- Use the Phone Button -->
+            <a class="links fa fa-phone" href="rotaryPhone.html">
+                <!-- Update href to the correct link -->
+                <span class="btn-names"> Use the Phone</span>
+            </a>
+            <!-- Escape Button -->
+            <!-- Linking to the modal -->
+            <a class="links fa fa-key" href="#codeInput" data-bs-toggle="modal">
+            <span class="btn-names"> Escape</span>
+            </a>
+        </div>
+        <a href="rotaryPhone.html" class="phoneLink">
+            <!-- Lottie Animation for Phone -->
+            <lottie-player id="phoneAnim" 
+                src="https://lottie.host/62798ce7-eb37-4151-82cb-a0a795db5159/egibpDp0Ml.json" 
+                background="transparent" 
+                speed="1" 
+                loop 
+                direction="1" 
+                mode="normal">
+            </lottie-player>
         </a>
-        <a class="links fa fa-address-book-o" href="directory.html">
-            <span class="btn-names">Phone Directory</span>
-        </a>
-    </div>
-
-    <!--The backup puzzles that we can hide/show whenever needed-->
-    <div class="backup-puzzles">
-
-        <button type="button" class="fa fa-pagelines" id="plant" data-bs-toggle="modal"
-            data-bs-target="#modal1"></button>
-
-        <button type="button" class="fa fa-key" id="pinFormBtn" data-bs-toggle="modal"
-            data-bs-target="#codeInput"><span class="btn-names">ESCAPE</span></button>
-
-        <a class="links fa fa-phone" id="phone" href="/public/rotaryPhone.html"></a>
-
-    </div>
-
-    <!--Modal for backup plant puzzle-->
-    <div class="modals-container">
-        <!--Modal-->
-        <div id="plantModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
+        <!-- Lottie Animation for Plant -->
+        <lottie-player id="plantAnim" 
+            src="https://lottie.host/be51e7d7-633c-4604-8f36-edf0f8603ad5/fWvYIVFAVt.json" 
+            background="transparent" 
+            speed="1" 
+            loop  
+            autoplay 
+            direction="1" 
+            mode="normal">
+        </lottie-player>
+        <!-- Phone Call Modal -->
+        <div id="phoneCallModal" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">SOS!</h4>
+                        <h4 class="modal-title">Phone Call</h4>
                     </div>
                     <div class="modal-body">
-                        <iframe id="iframeContent" width="100%" height="400px" frameborder="0"></iframe>
+                        <p>You have a phone call...</p>
+                        <img id="characterImage" src="" alt="Character Image" style="float: right; width: 100px; height: 100px;"/>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default">Replay sequence</button>
+                        <button type="button" class="btn btn-custom btn-answer" id="modalAnswerButton">Answer</button>
+                        <button type="button" class="btn btn-custom btn-decline" id="modalDeclineButton">Decline</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!--End of plant puzzle modal-->
-
         <!--ENTER FINAL CODE INPUT START-->
         <div id="codeInput" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <button type="button" class="close close-top-right" data-bs-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Enter Your 4-Digit Pin</h4>
                     </div>
-
                     <div class="modal-body">
                         <div class="pin-container">
                             <form id="pinForm">
@@ -90,51 +99,43 @@
                             <div id="result"></div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" onclick="checkPin()">Submit</button>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-    <!--END OF CODE INPUT FIELD-->
-
-
-    <!--Start of game over modal-->
-    <div class="modal fade modal-lg" id="gameOverModal" data-bs-backdrop="static" data-keyboard="false" tabindex="-1"
-        role="dialog" aria-labelledby="gameOverModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="gameOverModalLabel">Game Over</h5>
-                </div>
-                <div class="modal-body">
-                    <p>Sorry, your time is up! It seems like Alice and her friends are going to need more help than we
-                        thought...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="modal-btn" onclick="resetGame()">Restart</button>
+        </div>
+        <!--END OF CODE INPUT FIELD-->
+        <!--Start of game over modal-->
+        <div class="modal fade modal-lg" id="gameOverModal" data-bs-backdrop="static" data-keyboard="false" tabindex="-1"
+            role="dialog" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="gameOverModalLabel">Game Over</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sorry, your time is up! It seems like Alice and her friends are going to need more help than we
+                            thought...
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="modal-btn" onclick="resetGame()">Restart</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!--End of game over modal-->
-
-    <!--Include jQuery first-->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!--Then include Bootstrap JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-
-            <!--our scripts linked here -->
-    <script src="js/timer.js"></script>
-    <script src="js/main.js"></script>
-
-</body>
-
+        <!--End of game over modal-->
+        <!--Include jQuery first-->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!--Then include Bootstrap JavaScript-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <!--our scripts linked here -->
+        <script src="./js/timer.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./js/phoneCall.js"></script>
+    </body>
 </html>

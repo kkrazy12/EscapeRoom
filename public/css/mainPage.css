@@ -1,30 +1,60 @@
+/* CSS FOR THE MAIN TIMER AND ESCAPE ROOM */
+
+/* Font import */
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+/* Main body */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Alagard', fantasy;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* background-image: linear-gradient(red, black); */
-    background-image: url('../img/background.png');
+    background-image: url('../img/fullbackground.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+/* Background animation */
+@keyframes backAnim {
+    0%, 100% {
+        filter: hue-rotate(0deg) brightness(100%);
+    }
+    25%, 75% {
+        filter: hue-rotate(180deg) brightness(100%);
+    }
+    50% {
+        filter: hue-rotate(360deg) brightness(80%); /* Darker at 50% */
+    }
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: inherit;
+    z-index: -1;
+    animation: backAnim 10s infinite linear;
+}
+
+/* Main button */
 .main-btns {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     padding: 20px;
     margin: auto;
-    height: 40vh;
 }
 
-.main-btns .links .btn-names, .backup-puzzles .btn-names{
+.main-btns .links .btn-names, .backup-puzzles .btn-names {
     font-size: 20px;
 }
-
 
 .fa-puzzle-piece:before, .fa-address-book-o:before, .fa-key:before {
     font-size: 40px;
@@ -32,7 +62,7 @@ body {
 }
 
 .fa-pagelines:before, .fa-phone:before {
-font-size: 40px;
+    font-size: 40px;
 }
 
 #pinFormBtn {
@@ -41,35 +71,41 @@ font-size: 40px;
     color: white;
 }
 
-#pinFormBtn:hover{
+#pinFormBtn:hover {
     color: #00ffbf;
     text-shadow: -2px 0px 12px #09ed6c;
     background-color: black;  
     border: 3px solid goldenrod; 
 }
 
+/* Main links */
 .links {
-    flex: 1;
-    margin: 0 10px;
-    background-color: darkred;
+    flex: 0 0 35%;
+    margin: 1% 0.5%;
+    background-color: #ff260080; /* Updated color */
+    color: rgb(255, 255, 255); /* Text color */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     height: 100px;
-    width: 230px;
-    color: #00ffbf;
     text-decoration: none;
     border: white solid 3px;
     border-radius: 15px;
-
+    transition: background-color 0.7s ease; /* Transition for smooth color change */
 }
- .main-btns .links:hover{
+
+.links:hover {
+    background-color: rgba(0, 204, 153, 0.8);
+}
+
+.main-btns .links:hover {
     color: #00ffbf;
     text-shadow: -2px 0px 12px #09ed6c;
     background-color: black;
- }
+}
 
+/* Backup puzzles */
 .backup-puzzles {
     display: flex;
     justify-content: space-between;
@@ -79,7 +115,7 @@ font-size: 40px;
     width: 100%;
 }
 
-.backup-puzzles button:hover, .backup-puzzles a:hover{
+.backup-puzzles button:hover, .backup-puzzles a:hover {
     color: #00ffbf;
     text-shadow: -2px 0px 12px #09ed6c;
     background-color: black;
@@ -93,6 +129,7 @@ font-size: 40px;
     width: 150px;
     height: 140px;
 }
+
 .backup-puzzles a {
     flex: 0;
     flex-basis: 130px;
@@ -103,38 +140,36 @@ font-size: 40px;
     font-size: 20px;
 }
 
-/*timer styles here*/
-
+/* Timer Styles */
 .timer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    width: 200px;
+    width: 300px;
 }
 
-
 .timer-container {
-    background-color: whitesmoke;
+    background-color: transparent;
     color: black;
-    padding: 20px;
-    border-radius: 8px;
-    border: solid 5px darkred;
-    margin: 35px auto;
+    padding: 5px;
+    border: none;
+    margin: 50px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 
 .timer .progress-container {
     width: 100%;
-    border: 1px solid black;
-    --height: 20px;
+    border: 1px solid #00CC99;
+    --height: 30px;
     height: var(--height);
 }
 
 .display {
-    font-size: 35px;
+    font-size: 100px; /* Increased font size */
+    color: #00CC99;
 }
 
 :root {
@@ -154,60 +189,171 @@ font-size: 40px;
     transition: transform 0.1s, color 0.1s;
 }
 
+/* Modal styles */
 .modal-content {
-    font-family: fantasy;
-    font-size: 25px;
     text-align: center;
+    font-family: 'Alagard', fantasy;
 }
 
-    .modal-header{
-        justify-content: center;
-    }
+.modal-header {
+    justify-content: center;
+}
 
-    .modal-title{
-        font-size: 35px;
-    }
+.modal-title {
+    font-size: 35px;
+}
 
-    .modal-btn{
-        background-color: darkred;
-        color: #00ffbf;
-        border: darkred solid 5px;
-        border-radius: 15px;
-    }
+.modal-btn {
+    background-color: darkred;
+    color: #00ffbf;
+    border: darkred solid 5px;
+    border-radius: 15px;
+}
 
-    .modal-footer{
-        justify-content: center;
-    }
-    
-    .pin-container {
-        text-align: center;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    input {
-        padding: 10px;
-        margin-right: 10px;
-        font-size: 16px;
-    }
-    
-    button {
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    
-    #result {
-        margin-top: 20px;
-        font-size: 18px;
-    }
+.modal-footer {
+    justify-content: center;
+}
 
-    .close-top-right {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
-    
-    
+.pin-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+    font-size: 35px;
+}
+
+.modal-btn {
+    background-color: darkred;
+    color: #00ffbf;
+    border: darkred solid 5px;
+    border-radius: 15px;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+.modal-backdrop.show {
+    opacity: 0.5; 
+    background-color: #000; 
+}
+
+.pin-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+    font-size: 35px;
+    text-align: center; /* Center align the modal title */
+}
+
+.modal-header {
+    justify-content: center; 
+}
+
+
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+
+.modal-body p {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.modal-footer .btn-custom {
+    width: 100px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Input styles */
+input {
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.close-top-right {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+/* Phone and plant animation */
+#phoneAnim {
+    position: fixed;
+    bottom: -40px;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    z-index: 999;
+    filter: hue-rotate(100deg);
+}
+
+#plantAnim {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 300px;
+    height: 300px;
+    z-index: 999;
+}
+
+/* Phone call button */
+.btn-answer {
+    background-color: #90EE90;
+    border-color: #90EE90;
+}
+
+.btn-decline {
+    background-color: #FFC0CB;
+    border-color: #FFC0CB;
+}
+
+.btn-answer:hover {
+    background-color: #76C476;
+}
+
+.btn-decline:hover {
+    background-color: #FFA0A0;
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+}
+
+.main-btns .btn-names {
+    font-family: 'Alagard', fantasy;
+    font-size: 20px; 
+}
+
+/* Phone link */
+.phoneLink {
+    cursor: pointer;
+}
