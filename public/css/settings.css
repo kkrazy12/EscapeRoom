@@ -1,3 +1,4 @@
+/* Import fonts */
 @font-face {
     font-family: 'Chickweed';
     src: url('../fonts/Chickweed.otf') format('opentype');
@@ -8,6 +9,7 @@
     src: url('../fonts/alagard.ttf') format('truetype');
 }
 
+/* General styling */
 body, html {
     height: 100%;
     margin: 0;
@@ -45,6 +47,7 @@ main::before {
     animation: hueRotateAnimation 8s infinite linear;
 }
 
+/* Hue rotate animation */
 @keyframes hueRotateAnimation {
     0%, 100% { filter: hue-rotate(0deg) saturate(1); }
     33% { filter: hue-rotate(90deg) saturate(1.5); } 
@@ -126,25 +129,62 @@ a, a:visited, a:hover, a:active {
     color: inherit;
 }
 
-/* Responsive adjustments */
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.5em; 
+}
+
+#plantBackupToggle {
+    transform: scale(3); 
+    margin-left: 20px; 
+}
+
+p {
+    font-size: 1.3em;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .setting-item {
+        font-size: 1.5em;
+    }
+
+    #plantBackupToggle {
+        transform: scale(1.5);
+        margin-left: 10px;
+    }
+
+    p {
+        font-size: 1.3em;
+        line-height: 1.6;
+    }
+}
+
+/* Table Styles */
+.settings-table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px; 
+    border-collapse: collapse;
+    border: 2px solid white; 
+}
+
+.settings-table td {
+    padding: 10px;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.settings-table input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 10px;
+}
+
 @media (max-width: 768px) {
-    main {
-        width: 95%;
-    }
-
-    h1 {
-        font-size: 3em;
-    }
-
-    select, textarea {
-        font-size: 1em;
-    }
-
-    .button-row {
-        flex-direction: column;
-    }
-
-    .button-row > * {
-        margin: 10px 0;
+    .settings-table {
+        width: 90%;
     }
 }

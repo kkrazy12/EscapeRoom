@@ -1,3 +1,5 @@
+/* SCRIPT FOR STYLESHEET FUNCTIONALITY */
+
 // Open player names modal when the "Enter Player Names" button is clicked
 document.getElementById("enterNamesBtn").addEventListener("click", function() {
     document.getElementById("playerNamesModal").style.display = "block";

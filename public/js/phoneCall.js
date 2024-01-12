@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    madHatterPhone();
+    resetPhoneAnim();
+});
+
 const ws = new WebSocket('ws://172.20.10.2:3000/admin');
 var aiAudioUrl = ''; // Global variable to store AI-generated audio URL
 let phoneRingingAudio = new Audio('audio/phoneRinging.mp3');
@@ -61,6 +66,7 @@ function handleReceivedData(messageData) {
                 $('#phoneCallModal').modal('show');
                 restartPhoneAnimation();
                 phoneRingingAudio.play();
+                playPhoneAnim();
             }
         });
     }
@@ -126,12 +132,21 @@ ws.onmessage = function(event) {
 
 $(document).ready(function() {
     $('#modalAnswerButton').click(function() {
-        playAiAudio();
+        if (aiAudioUrl) {
+            let aiAudio = new Audio(aiAudioUrl);
+            aiAudio.play().then(() => {
+                console.log("AI voice playback started.");
+            }).catch(error => {
+                console.error("Error during AI voice playback:", error);
+            });
+        } else {
+            console.error("No AI audio URL available.");
+        }
         $('#phoneCallModal').modal('hide');
-        restartPhoneAnimation();
         phoneRingingAudio.pause();
         phoneRingingAudio.currentTime = 0;
-    });
+        resetPhoneAnim();
+    });      
 
     $('#modalDeclineButton').click(function() {
         $('#phoneCallModal').modal('hide');
@@ -139,5 +154,31 @@ $(document).ready(function() {
         restartPhoneAnimation();
         phoneRingingAudio.pause();
         phoneRingingAudio.currentTime = 0;
+        resetPhoneAnim();
     });
 });
+
+function madHatterPhone() {
+    if (!sessionStorage.getItem('madHatterCalled')) {
+        const character = 'Mad Hatter';
+        aiAudioUrl = './audio/directoryAudio/madHatter.mp3';
+        updateModalMessageAndImage(character);
+        $('#phoneCallModal').modal('show');
+
+        // Set a flag in session storage
+        sessionStorage.setItem('madHatterCalled', 'true');
+    }
+}
+
+function playPhoneAnim() {
+    // Play phone animation
+    phoneAnim.play();
+}
+
+function resetPhoneAnim() {
+    // Stop and restart the phone animation
+    phoneAnim.stop();
+    phoneAnim.play();
+    // Pauses indefinitely from frame 1
+    phoneAnim.stop();
+}

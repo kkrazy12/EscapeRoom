@@ -6,27 +6,57 @@ const voiceList = require('./voices.json');
 
 // Import modules
 const express = require('express');
+const { SerialPort } = require('serialport'); 
+const { ReadlineParser } = require('@serialport/parser-readline');
+const WebSocket = require('ws');
 const ElevenLabs = require('elevenlabs-node');
 const fs = require('fs');
 const path = require('path');
-const http = require('http');
-const WebSocket = require('ws');
 
 // Initialize Express app
 console.log("Current working directory:", process.cwd());
 const app = express();
 app.use(express.json()); // For parsing JSON in POST requests
 
-// Create a HTTP server using the Express app
-const server = http.createServer(app);
-
-// Set up a WebSocket server using the HTTP server
-const wss = new WebSocket.Server({ server });
-
 // Setup ElevenLabs text-to-speech
 const voice = new ElevenLabs({
     apiKey: process.env.ELEVENLABS_API_KEY
 });
+
+// Create a HTTP server using the Express app
+const server = require('http').createServer(app);
+
+// Set up a WebSocket server using the Express app
+const wss = new WebSocket.Server({ server });
+
+// Set up SerialPort to communicate with Arduino
+const port = new SerialPort({
+    path: 'COM7', // IMPORTANT: Change to correct serial port
+    baudRate: 9600,
+});
+
+// Monitor for any errors with opening the serial port
+port.on('error', function(err) {
+    console.log('Error: ', err.message);
+});
+
+// Variable to read incoming data from the Arduino
+const parser = port.pipe(new ReadlineParser({ 
+    delimiter: '\r\n'
+}));
+
+// Function to send a message to the Arduino
+function serialPrint(message) {
+    // Convert the buffer to a string
+    let messageString = message.toString();
+
+    port.write(messageString + '\n', function(err) { // Add a newline character
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('Message sent:', messageString);
+    });
+}
 
 const filePath = path.join(__dirname, '../public/audio/generatedAudio.mp3');
 
@@ -72,38 +102,26 @@ app.post('/speak', function(req, res) {
 // Serve files from the public directory
 app.use(express.static('public'));
 
-// WebSocket connection handler
-wss.on('connection', (ws, req) => {
-    console.log('WebSocket client connected');
+// WebSocket connection
+wss.on('connection', (ws) => {
+    console.log('Client connected');
 
     ws.on('message', function(message) {
-        console.log(`Received message: ${message}`);
-        const isAdmin = req.url.includes('/admin'); // Check if the connection is from the admin
-
-        if (isAdmin) {
-            // If the message is from the admin, broadcast it to all other clients
-            wss.clients.forEach(client => {
-                if (client !== ws && client.readyState === WebSocket.OPEN) {
-                    client.send(message);
-                }
-            });
-        } else {
-            serialPrint(message); // Forward the message to the Arduino
-        }
+        console.log('Received message from Ardiuno:', message);
+        serialPrint(message); // Forward the message to the Arduino
     });
 
-    if (!req.url.includes('/admin')) {
-        // When data is received from the serial port, send it to the WebSocket client
-        parser.on('data', (data) => {
-            console.log('Arduino:', data); // Log the received data
-            ws.send(data);
-        });
-    }
+    // When data is received from the serial port, send it to the WebSocket
+    parser.on('data', (data) => {
+        console.log('Ardiuno:', data); // Log the received data
+        ws.send(data); // Send data to the WebSocket client
+    });
 });
 
 // Define the port for the server to listen on
 const PORT = 3000;
 
-server.listen(PORT, '0.0.0.0', () => {
+// Start the server
+server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
