@@ -1,70 +1,82 @@
-// Function to get an element using a query selector
+// Get an element using a query selector
 const get = query => document.querySelector(query);
 
-// Function to create a Promise that resolves after a specified time (in seconds)
-const wait = s => new Promise(r => setTimeout(r, s * 1000));
-
-// Get references to the display and progress elements using the get function
+// Get references to the display and progress elements
+var interval;
+const DURATION = 20 * 60 * 1000;
+const sessionTargetTime = "target_time";
 const display = get(".timer .display");
 const progress = get(".timer .progress");
+const WARN_THRESHOLD = 10 * 60;
+const DANGER_THRESHOLD = 5 * 60;
+const TARGET_TIME = new Date().getTime() + DURATION; // Current time + 15 minutes in milliseconds
 
-// Constants defining thresholds for progress colour changes
-const WARN_THRESHOLD = 0.4;
-const DANGER_THRESHOLD = 0.2;
+// Function to update the timer display, progress bar, and color
+function updateTimerDisplay(callback) {
+  // Convert milliseconds to seconds and calculate minutes and seconds
+  var storedTargetTime = sessionStorage.getItem(sessionTargetTime);
+  var currentTime = new Date().getTime();
+  const remainingSeconds = Math.floor((storedTargetTime - currentTime) / 1000);
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
 
-// Initial time in seconds (15 minutes * 60 seconds)
-const INIT_TIME = 900;
-// Variable to track the remaining time, initialised to the initial time
-let timeRemaining = INIT_TIME;
-
-// Immediately invoked async function (IIFE) to start the countdown
-(async () => {
-  // Continue the loop while there is time remaining
-  while (timeRemaining > 0) {
-    // Decrement the remaining time
-    timeRemaining--;
-
-    // Update the display with the formatted time (MM:SS)
-    display.innerText = `${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, '0')}`;
-
-    // Calculate the new progress value based on the remaining time
-    const newProgress = timeRemaining / INIT_TIME;
-
-    // Set the CSS variable --progress to update the progress bar width
-    progress.style.setProperty("--progress", newProgress);
-
-    // Set the colour of the progress bar based on the new progress value
-    if (newProgress > WARN_THRESHOLD) {
-      progress.style.setProperty("--color", "var(--safe)");
-    } else if (newProgress > DANGER_THRESHOLD) {
-      progress.style.setProperty("--color", "var(--warn)");
-    } else {
-      progress.style.setProperty("--color", "var(--danger)");
-    }
-
-    // Wait for 1 second before the next iteration
-    await wait(1);
+  if (remainingSeconds <= 0) {
+    sessionStorage.setItem("stop", true);
+    clearInterval(interval);
+    sessionStorage.setItem(sessionTargetTime, new Date().getTime() + DURATION);
+    callback();
   }
-})();
 
-// Function to reset the game and navigate back to index.html
+  // Update the display with the formatted time (MM:SS)
+  display.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+  // Calculate progress percentage
+  const progressPercentage = (remainingSeconds / (DURATION / 1000)) * 100;
+
+  // Update the progress bar with the calculated percentage
+  progress.style.setProperty("--progress", progressPercentage + "%");
+
+  if (remainingSeconds > WARN_THRESHOLD) {
+    progress.style.setProperty("--color", "var(--safe)");
+  } else if (remainingSeconds > DANGER_THRESHOLD) {
+    progress.style.setProperty("--color", "var(--warn)");
+  } else {
+    progress.style.setProperty("--color", "var(--danger)");
+  }
+}
+
+
+
+// Function to handle the countdown
+function startCountdown() {
+  // store in session target time if not exists
+  var storedtime = sessionStorage.getItem(sessionTargetTime)
+  if (!storedtime) {
+    sessionStorage.setItem(sessionTargetTime, TARGET_TIME)
+  }
+  //if (sessionStorage.getItem(stop) === true) return;
+  interval = setInterval(() => {
+    //const newProgress = (TARGET_TIME - new Date().getTime()) / (15 * 60 * 1000);
+    updateTimerDisplay(()=>{
+      $('#gameOverModal').modal('show');
+    });
+  }, 1000);
+
+
+}
+
+startCountdown();
+
 function resetGame() {
-  // Navigate back to index.html
+  // Remove the timer state from sessionStorage
+  sessionStorage.removeItem("timeRemaining");
+  sessionStorage.setItem(sessionTargetTime, TARGET_TIME + 0.1 * 60 * 1000);
   window.location.href = 'index.html';
 }
-(async () => {
-  // Continue the loop while there is time remaining
-  while (timeRemaining > 0) {
-    // ... (Your existing timer code)
-    await wait(1);
-  }
-
-  // Time is up, show the game over modal
-  $('#gameOverModal').modal('show');
-})();
 
 
-// Enter four digit code into input field
+
+// Enter four-digit code into the input field
 function checkPin() {
   const userPin1 = document.getElementById('userPin1').value;
   const userPin2 = document.getElementById('userPin2').value;
@@ -73,16 +85,14 @@ function checkPin() {
 
   const resultDiv = document.getElementById("result");
   var pin = userPin1 + userPin2 + userPin3 + userPin4;
-console.log(pin)
-  // Check if the entered pin is correct (1234)
-  if (pin === "1234") {
-      resultDiv.textContent = "Access Granted! 🎉";
-      resultDiv.style.color = "green";
-  } else {
-      resultDiv.textContent = "Access Unsuccessful. Please try again.";
-      resultDiv.style.color = "red";
-  }
+  console.log(pin);
 
-  // Clear the input field
-  //document.getElementById("pinInput").value = "";
+  // Check if the entered pin is correct (1234)
+  if (pin === "8421") {
+    resultDiv.textContent = "You have successfully escaped CyberWonderland! 🎉";
+    resultDiv.style.color = "green";
+  } else {
+    resultDiv.textContent = "Access Unsuccessful. Please try again.";
+    resultDiv.style.color = "red";
+  }
 }

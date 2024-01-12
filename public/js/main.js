@@ -8,11 +8,9 @@ document.querySelector(".close").addEventListener("click", function() {
     document.getElementById("playerNamesModal").style.display = "none";
 });
 
-// Start the game when the "Start Game" button is clicked 
+// Start the game when the "Start Game" btn
 document.getElementById("startGameBtn").addEventListener("click", function() {
-    // Add your game start logic here
     alert("Game started!");
-    // Close the modal after starting the game
     document.getElementById("playerNamesModal").style.display = "none";
 });
 
@@ -78,3 +76,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+  

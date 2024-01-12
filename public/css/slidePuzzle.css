@@ -1,7 +1,35 @@
+@font-face {
+    font-family: 'Chickweed';
+    src: url('../fonts/Chickweed.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+}
+
+body{
+    background-image: url(../img/background.png);
+}
+
+.center-align {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    margin: 10px; 
+    display: flex;
+}
+
 #canvas{
     height: 400px;
     width: 400px;
-    background-color: red;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -10,11 +38,44 @@
 #canvas img {
     width: 118px;
     height: 118px;
-    border: 1px solid #0c67ae;
 }
 
-body{
+h1{
+    font-family: 'Chickweed';
+    color: white;
+    font-size: 40px;
+    margin: 18px;
+}
+
+p {
+    color: white; 
+    font-family: 'Alagard';
+    font-size: 19px;
+    margin-bottom: 32px;
+}
+
+main {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+}
+
+.back-btn {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 0; 
+    cursor: pointer;
+    text-decoration: none;
+    background-color: black;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-family: 'Alagard', Courier, monospace;
+    text-align: center;
+    transition: 1s;
+    color: #00CC99;
+    display: flex;
+}
+
+.back-btn:hover{
+    background-color: #00ffbba1;
+    color: #FFF;
 }
