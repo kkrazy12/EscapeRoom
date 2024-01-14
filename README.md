@@ -8,18 +8,12 @@ This project was created for the module _DAT661 Realtime_ in BA(Hons) Digital Me
 
 ## Technology Stack
 
-This project uses a combination of technologies:
-
 - Vanilla HTML, CSS, and JavaScript
 - Node.js and Express for backend development
 - P5.js for interactive elements
 - Arduino for physical props in the escape room
 
 ## Sources
-
-### General
-
-- Photos and videos from Alice in Wonderland (1951)
 
 ### Fonts
 
@@ -56,3 +50,7 @@ This project uses a combination of technologies:
 - [Express](https://expressjs.com/) - For back-end
 - [Node](https://nodejs.org/en) - For back-end
 - [ElevenLabs API](https://elevenlabs.io/docs/api-reference/text-to-speech) - For AI voices
+
+## Copyright and Permissions
+
+"Disney's Alice in Wonderland" materials, including images and characters, are copyrighted by Disney. This project uses these materials under fair use for educational, non-commercial purposes only. We do not claim any ownership over these materials, and acknowledge that all rights to these materials belong to Disney. This project is not affiliated with, endorsed by, or sponsored by Disney.
