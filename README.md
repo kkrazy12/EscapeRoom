@@ -2,16 +2,9 @@
   <img src="https://i.ibb.co/vH2sxqt/Cyber-Wonderland-Logo4-1.png" width="500" alt="Cyber Wonderland Logo"/>
 </p>
 
-**Cyber Wonderland** is an immersive escape room based on _Alice’s Adventures in Wonderland_ by Lewis Carroll. In the escape room, players encounter Alice who asks for the player's help. The Queen of Hearts has lost her jewels… but they are not in Wonderland, they are in the real world! Alice enlists the players help to find them and send the jewels back to Wonderland. To find the jewels, players must search around the environment. Here they encounter a talking plant, a number of lockboxes, a rotary phone, playing cards, an unusual dictionary and more. 
+**Cyber Wonderland** is an immersive escape room based on _Alice’s Adventures in Wonderland_ by Lewis Carroll. In the escape room, players encounter Alice who asks for the player's help. The Queen of Hearts has lost her jewels… but they are not in Wonderland, they are in the real world! Alice enlists the players help to find them and send the jewels back to Wonderland. 
 
-This project was created for the module _DAT661 Realtime_ in BA(Hons) Digital Media Design, at the University of Plymouth.
-
-## Technology Stack
-
-- Vanilla HTML, CSS, and JavaScript
-- Node.js and Express for backend development
-- P5.js for interactive elements
-- Arduino for physical props in the escape room
+To find the jewels, players must search around the environment. Here they encounter a talking plant, a number of lockboxes, a rotary phone, playing cards, an unusual dictionary and more. This project was created for the module _DAT661 Realtime_ in BA(Hons) Digital Media Design, at the University of Plymouth, using HTML, CSS, JavaScript and Node. This was a collaborative project between Leanne, Kaye, and Isaac.
 
 ## Sources
 
