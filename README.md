@@ -1,7 +1,5 @@
-# Cyber Wonderland
-
 <p align="center">
-  <img src="https://i.ibb.co/vH2sxqt/Cyber-Wonderland-Logo4-1.png" width="300" alt="Cyber Wonderland Logo"/>
+  <img src="https://i.ibb.co/vH2sxqt/Cyber-Wonderland-Logo4-1.png" width="500" alt="Cyber Wonderland Logo"/>
 </p>
 
 **Cyber Wonderland** is an immersive escape room based on _Alice’s Adventures in Wonderland_ by Lewis Carroll, and the animated adaptation for Disney. This project was created for the module DAT661 Realtime, in BA(Hons) Digital Media Design, at the University of Plymouth. It was created by Group 3: Leanne, Kaye, and Isaac.
