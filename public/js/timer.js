@@ -27,6 +27,13 @@ function updateTimerDisplay(callback) {
     callback();
   }
 
+  // Play White Rabbit audio at designated times
+  if (minutes === 10 && seconds === 0) {
+    playAudio('audio/10minutes.mp3');
+  } else if (minutes === 5 && seconds === 0) {
+    playAudio('audio/5minutes.mp3');
+  }
+
   // Update the display with the formatted time (MM:SS)
   display.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
@@ -59,6 +66,7 @@ function startCountdown() {
     //const newProgress = (TARGET_TIME - new Date().getTime()) / (15 * 60 * 1000);
     updateTimerDisplay(()=>{
       $('#gameOverModal').modal('show');
+      playAudio('audio/lose.mp3');
     });
   }, 1000);
 
@@ -73,7 +81,6 @@ function resetGame() {
   sessionStorage.setItem(sessionTargetTime, TARGET_TIME + 0.1 * 60 * 1000);
   window.location.href = 'index.html';
 }
-
 
 
 // Enter four-digit code into the input field
@@ -91,8 +98,14 @@ function checkPin() {
   if (pin === "8421") {
     resultDiv.textContent = "You have successfully escaped CyberWonderland! 🎉";
     resultDiv.style.color = "green";
+    playAudio('audio/win.mp3');
   } else {
     resultDiv.textContent = "Access Unsuccessful. Please try again.";
     resultDiv.style.color = "red";
   }
+}
+
+// Function to play audio
+function playAudio(audioFile) {
+  new Audio(audioFile).play();
 }

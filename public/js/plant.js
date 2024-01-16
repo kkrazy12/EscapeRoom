@@ -7,6 +7,8 @@ $(document).ready(function() {
     // This variable can be controlled from settings
     let plantBackup = sessionStorage.getItem('plantBackup') === 'true' || false;
 
+    console.log('PlantBackup', plantBackup); // Log current state
+
     // If the physical plant is not being used, this backup will be implemented instead as a failsafe
     if (plantBackup) {
 
