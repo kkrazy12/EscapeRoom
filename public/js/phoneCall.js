@@ -156,17 +156,26 @@ $(document).ready(function() {
             let aiAudio = new Audio(aiAudioUrl);
             aiAudio.play().then(() => {
                 console.log("AI voice playback started.");
+                // Hide the Answer and Decline buttons
+                $('#modalAnswerButton, #modalDeclineButton').hide();
+                // Change the modal text
+                const modalBodyText = document.querySelector('#phoneCallModal .modal-body p');
+                modalBodyText.textContent = "Call connected...";
+    
+                // Close the modal automatically after the audio finishes
+                aiAudio.onended = function() {
+                    $('#phoneCallModal').modal('hide');
+                    resetPhoneAnim();
+                    phoneRingingAudio.pause();
+                    phoneRingingAudio.currentTime = 0;
+                };
             }).catch(error => {
                 console.error("Error during AI voice playback:", error);
             });
         } else {
             console.error("No AI audio URL available.");
         }
-        $('#phoneCallModal').modal('hide');
-        phoneRingingAudio.pause();
-        phoneRingingAudio.currentTime = 0;
-        resetPhoneAnim();
-    });      
+    });        
 
     $('#modalDeclineButton').click(function() {
         $('#phoneCallModal').modal('hide');
@@ -182,6 +191,9 @@ $(document).ready(function() {
 function madHatterPhone() {
     // Only play if the Mad Hatter's flag is false
     if (!sessionStorage.getItem('madHatterCalled')) {
+        // Ensure buttons are visible
+        $('#modalAnswerButton, #modalDeclineButton').show();
+
         const character = 'Mad Hatter';
         aiAudioUrl = './audio/directoryAudio/madHatter.mp3';
         updateModal(character);
@@ -203,4 +215,6 @@ function resetPhoneAnim() {
     phoneAnim.play();
     // Pauses indefinitely from frame 1
     phoneAnim.stop();
+    // Ensure buttons are visible
+    $('#modalAnswerButton, #modalDeclineButton').show();
 }
