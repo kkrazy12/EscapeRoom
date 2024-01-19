@@ -119,9 +119,9 @@ wss.on('connection', (ws) => {
 });
 
 // Define the port for the server to listen on
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Start the server
 server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
